@@ -1,0 +1,701 @@
+\documentclass[a4paper, 11pt]{report}
+
+\usepackage{palatino}
+\usepackage{mathpazo}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+
+\usepackage{mathtools}
+\mathtoolsset{centercolon}
+
+\usepackage[]{hyperref} 
+\usepackage[]{cleveref} 
+\usepackage[]{enumerate} 
+\usepackage[]{makeidx} 
+\makeindex
+
+\usepackage[]{amsthm} 
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exrc}[thm]{Exercise}
+
+\newcommand{\impl}{\Longrightarrow}
+\newcommand{\eqvl}{\Longleftrightarrow} 
+\renewcommand{\neg}{{\sim}} % rewriting the \sim command as an unary negation
+\title{
+  Notes and exercises in MAT1140
+}
+\author{
+  Ivar Stangeby
+}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\chapter{Logic}
+\label{cha:logic}
+
+\section{True or False}
+\label{sec:true_or_false}
+
+We first want to examine some thought experiments. Examine each one and figure
+out what the statement means, and whether it is true or false.
+
+\begin{enumerate}
+  \item The points $(-1, 1), (2, -1)$ and $(3, 0)$ lie on a line.
+
+    We know from linear algebra, that if these points are to lie on the
+    same line, they all have to satisfy the same linear equation $ax + b$.
+    These do not, so the statement is false.
+
+  \item If $x$ is an integer, then $x^2 \geq x$.
+
+    This is an implication, on the form "if $A$, then $B$". We are
+    interested in the world where $x$ is an integer, and want to examine
+    whether this means that $x^2 \geq x$ must hold. We have three cases, $x
+    > 0, x = 0$ and $x < 0$.  It holds for each case, so the statement is
+    true. To prove this rigorously, we should use axiomatic set theory and
+    the trichotomy of the integers.
+
+  \item If $x$ is an integer, then $x ^ 3 \geq x$.
+
+    This is a statement on the same form as above. This one however, is
+    false, and we can show this just by finding a counter-example. We know
+    that any negative number raised to an odd power is also negative.
+    Hence, if we let $x < 0$ and $|x| > 1$ we must have that $x ^ 3 < x$.
+    Thus, the statement is false.  
+
+  \item For all real numbers $x$, $x^3 = x$.
+
+    This again, is an implication, if one restates the statement.  If $x$
+    is a real number, then $x ^ 3 = x$. Knowing that all integers are real
+    numbers we can use the knowledge from the previous one to instantly see
+    that this must be false. Just pick any real number other than $0$ and
+    $1$ really.
+
+  \item There exists a real number $x$ such that $x ^ 3 = x$.
+
+    This statement is in some sense a weaker version of the statement
+    above. It only asserts the existence of at least one. Hence, all we
+    have to do is find a real number that satisfies the equation. If we let
+    $x = 1$, then we have $1 ^ 3 = 1$, hence the statement is true.
+
+  \item $\sqrt{2}$ is an irrational number.
+
+    To show this statement, we must remind ourselves what an irrational
+    number is.  An irrational number is a number on the form $a / b$ where
+    $a, b \in \mathbb{Z}$ and $b \neq 0$.  The statements essentially
+    asserts that there are no numbers on the form $x = a / b$ such that $x
+    ^ 2 = 2$.  We can assume for contradiction that there does exist some
+    rational number $x$ such that $x ^ 2 = 2$. We can then write $x =
+    \frac{a}{b}$, and we can also assume that the numbers are in their
+    lowest terms. That any common factors have been canceled out.  If we
+    square $x$, we get $x ^ 2 = \frac{a^2}{b^2}$. Remember, that we assumed
+    that the square of $x$ was equal to $2$, so we have that $2 =
+    \frac{a^2}{b^2}$. Multiplying through by $b^2$ we get that $2b^2 =
+    a^2$, hence $a^2$ must be an even number. But, in that case $a$ must be
+    an even number, since the square of an even number is
+    even.\footnote{This is shown in no. 8.} Thus, we can write $a$ on the
+    form $2n$ for some integer $n$. If we substitute this into our previous
+    equation we get that $2b^2 = 4n^2$, and the $2$'s cancel and we get
+    $b^2 = 2n^2$, hence $b$ must be an even number. But this means that
+    both $b$ and $a$ have the common factor of $2$, and since we assumed
+    that $a$ and $b$ had no common factors this is the contradiction we
+    wanted. Hence, $\sqrt{2}$ is an irrational number.
+
+  \item If $x + y$ is odd and $y + z$ is odd, then $x + z$ is odd.
+
+    A number is odd if there exists some integer $n$ such that the number
+    can be written on the form $2n + 1$. We therefore let $n, m \in
+    \mathbb{Z}$ such that $x + y = 2n + 1$ and $y + z = 2m + 1$. Solving
+    these equations for $x$ and $z$ respectively, we get that $x = 2n + 1 -
+    y$ and $z = 2m + 1 - y$. Adding we see that $x + z = 2(n + m + 1 - y)$.
+    Hence $x + z$ is an \textit{even} number, not an odd one.
+
+  \item If $x$ is an even integer, then $x^2$ is an even integer. 
+
+    Since $x$ is an even integer, we can write it on the form $x = 2n$ for
+    some integer $n$. If we square $x$, we see that $x^2 = 4n^2$, which we
+    can rewrite as $2(2n^2)$. Hence $x^2$ is an even integer. This fact was
+    used in the proof for the irrationality of the square root of two
+    above.
+
+  \item Every positive integer is the sum of distinct powers of two.
+
+    This one is tricky to solve, and I have no idea whether it is true or
+    not.  By testing some cases one can easily see that most numbers follow
+    this, and I have not found any counter-example.
+
+  \item Every positive integer is the sum of distinct powers of three.
+
+    Same as above, no idea.
+
+  \item If $x$ is an integer, then $x$ is even or $x$ is odd.
+
+    An even number is on the form $2n$ for some integer $n$, and hence,
+    must be an integer.  The same goes for odd numbers on the form $2n +
+    1$. Hence, if $x$ is even it must be an integer, and if $x$ is odd it
+    must be an integer.  It now remains to show that if $x$ is an integer,
+    then it cannot be neither even nor odd. If we assume that $x$ is an
+    integer, but is neither even nor odd there must in some sense be a
+    decimal part to $x$. And in that case it cannot be an integer.
+
+  \item If $x$ is an integer, then $x$ cannot be both even and odd.
+
+    If we assume $x$ to be an integer that can be written on the form $x =
+    2n$ and $x = 2m + 1$ for some integers $n, m \in \mathbb{Z}$, then we
+    can add the two expressions together to achieve
+    \begin{equation}
+      \notag
+      2x = 2n + 2m + 1 = 2(n + m) + 1.
+    \end{equation}
+    If we solve this for $x$, we get that $x = 2(n+m) + \frac{1}{2}$. Hence
+    $x$ is not an integer, which contradicts our initial assumption.  This
+    concludes the proof.
+
+  \item Every even integer greater than $2$ can be expressed as the sum of two prime numbers.
+
+    This is one of the unsolved problems in mathematics. I do not know how
+    to solve this one, but later in this chapter I will attempt to rewrite
+    the statement into equivalent ones to get different perspectives on the
+    problem.
+
+  \item There are infinitely many prime numbers.
+
+    A prime number is a whole number that is only divisible by $1$ and
+    itself. If we assume that there are a finite number of prime numbers
+    $p_0, p_1, \ldots, p_n$ then we know that these have no common factors.
+    We can now construct a new prime number, called $q$ like this:
+    \begin{equation}
+      \notag
+      q = p_0\cdot p_1 \cdot p_2 \cdot \ldots \cdot p_n + 1
+    \end{equation}
+
+    This new number $q$ cannot possibly have any common factors with the
+    other prime numbers, hence it is divisible only by itself and one.  We
+    can repeat this process indefinitely to generate an infinite amount of
+    prime numbers. Hence the statement is true.
+
+  \item For any positive real number $x$ there exists a positive real number $y$ such that $y^2 = x$.
+
+    This statement essentially asserts that given any real number $x$, we
+    can always find another real number $y$ such that if you square this
+    number $y$ you get $x$. Not quite sure how to prove this.
+
+  \item Given three distinct points in space, there is one and only one plane passing through them.
+
+    This is fairly obvious, and this is a typical uniqueness-proof in
+    mathematics. By assuming that there are two distinct planes passing
+    through the same points, one can show that these two planes must
+    actually be equal.
+
+\end{enumerate} 
+
+I am now to divide my answers into four categories, namely the following:
+\begin{enumerate}[a)]
+  \item I am confident that the justification I gave is conclusive.
+
+    1, 3, 4, 5, 6, 7, 8, 12, 14
+  \item I am not confident that the justification I gave is conclusive.
+
+    2
+  \item I am confident that the justification I gave is \textit{not} conclusive. (If you gave no justification at all, your answer falls
+    into this category.)
+
+    9, 11, 13, 15, 16 
+  \item I could not decide whether the statement was true or false.
+
+    None
+\end{enumerate}
+
+\section{Statements and Predicates}
+\label{sec:statements_and_predicates}
+
+A \textbf{statement}\index{statement} is a sentence that is either true or false, but not ambiguous.
+
+
+\begin{exrc}
+  Give some examples of sentences that are statements and some examples of sentences that are not statements.
+\end{exrc}
+
+\begin{enumerate}
+  \item \textit{World War 2 ended in 1945} is a statement.
+  \item \textit{The university campus was tranquil during the summer} is not a statement. What university are we talking about?
+  \item \textit{The Eiffel tower is made of metal} is a statement.
+  \item \textit{The building is made of bricks} is not a statement. Which building?
+\end{enumerate}
+
+A sentence with one or more free variables in it that becomes a statement
+when the free variables takes on a particular value is called a
+\textbf{predicate}\index{predicate}.
+
+\begin{exrc}
+  Give examples of mathematical predicates that have two and three free variables.
+\end{exrc}
+
+\begin{enumerate}
+  \item \textit{He ate bacon and eggs for breakfast} is a predicate with one free variable, "He".
+  \item \textit{He said to her that he was leaving} is a predicate with two free variables, "He" and "She".
+  \item $x ^ 2 + 3y = 12z$ is a predicate with three free variables, namely $x, y$ and $z$.
+
+\end{enumerate}
+
+\section{Quantification}
+
+We can turn a predicate into a statement by substituting particular values
+for its free variables. There are at least two other ways in  which
+predicates can be used to build statements. We make a claim about which
+values of the free variable turn the predicate into a true statement.
+
+The phrases \textbf{for all}\index{for all} and \textbf{there
+exists}\index{there exists} are called
+\textbf{quantifiers}\index{quantifiers}, and the process of using
+quantifiers to make statements out of predicates is called
+\textbf{quantification}\index{quantification}.
+
+
+\begin{exrc}
+  Suppose we understand the free variable $z$ to refer to fish.
+\end{exrc}
+
+If we let $A(z)$ stand for the predicate \textit{$z$ lives in the sea},
+then the statement "for all $z$, $A(z)$" is true.
+
+If we let $B(z)$ stand for the predicate \textit{$z$ is blue}, then the statement
+"for all $z, B(z)$" is false but "there exists $z$ such that $B(z)$" is true.
+
+"For all" is called the \textbf{universal quantifier}\index{universal
+quantifier} and has the symbol $\forall$\index{$\forall$}.  "There exists \ldots such that"
+is called the \textbf{existential quantifier}\index{existential quantifier}
+and has the symbol $\exists$.\index{$\exists$}
+
+You might find it curious that a sentence can contain a variable, as quantified
+statements do, and yet be a statement. We call the variables in a statement
+with quantifiers \textbf{bound variables}\index{bound variables}. This
+essentially means that when the variable is bound there is no ambiguity.
+Note that the order of quantification matters greatly.
+
+\begin{exrc}
+  Consider the following two statements.
+  \begin{enumerate}
+    \item There exists $x$ and there exists $y$ such that $y^2 = x$.
+    \item There exists $y$ and there exists $x$ such that $y^2 = x$.
+  \end{enumerate}
+  Did quantifying over $y$ and then $x$ rather than the other way around change
+  the meaning of the statement? What if the quantifiers had been \textit{for
+  all} instead of \textit{there exists}?
+\end{exrc}
+
+It seems like the order of quantifiers do not matter as long as the
+quantifiers are the same. In other words, having two "for all" quantifiers it
+does not matter what order and similarly for two "there exists" quantifiers.
+However, if we have one "for all" and one "there exists" changing the order
+definitely changes the meaning of the statement. Examine the statements
+\begin{enumerate}
+  \item There exists $x$ such that for all $y$, $y^2 = x$.
+  \item For all $x$ there exists $y$ such that $y^2 = x$.
+\end{enumerate}
+The first one asserts the existence of one single $x$ such that the equation
+holds for all $y$, which is obviously false. The second one however asserts the
+fact that no matter what number $x$ you pick you can always find a number $y$
+that has $x$ as its square.
+
+\begin{exrc}
+  Consider the predicate about integers "$x = 2y$". There are six distinct ways
+  of quantifying this statement. Find all six and determine the truth value.
+\end{exrc}
+
+From the previous exercise, we can change the order of quantifiers without
+altering the meaning of the statement. Thus, we have six distinct ways of
+quantifying the statements.
+
+\begin{enumerate}
+  \item $\forall x \exists y$ such that $x = 2y$. Chose $x = 1$, this is false.
+  \item $\exists x \forall y$ such that $x = 2y$. False.
+  \item $\exists x \exists y$ such that $x = 2y$. True, $x = 2$ and $y = 1$.
+  \item $\forall x \forall y$ such that $x = 2y$. False.
+  \item $\forall y \exists x$ such that $x = 2y$. True.
+  \item $\exists y \forall x$ such that $x = 2y$. False.
+\end{enumerate}
+
+\section{Mathematical Statements}
+\label{sec:mathematical_statements}
+
+The vast majority of mathematical statements can be written in the form "If
+$A$, then $B$" where $A$ and $B$ are predicates. The question now is, if $A$
+and $B$ are predicates then surely "If $A$, then $B$" should be a predicate as
+well, not a statement. However, it is standard practice to assume universal
+quantification over the variables. In other words, the statement is to be read
+as "For all $x$, if $A(x)$, then $B(x)$".
+
+\begin{defn}
+  A statement on the form "If $A$, then $B$", where $A$ and $B$ are statements
+  or predicates is called an \textbf{implication}\index{implication}. $A$ is
+  called the \textbf{hypothesis}\index{hypothesis} of the statement and $B$ is
+  called the \textbf{conclusion}\index{conclusion}.
+\end{defn}
+
+\addtocounter{thm}{1}
+
+\begin{exrc}
+  Identify the hypotheses and conclusions in each of the implications given in
+  the previous example. (pg. 14)
+\end{exrc}
+
+\begin{enumerate}
+  \item Hypothesis: $x + y$ is odd and $y + z$
+        Conclusion: $x + z$ is odd
+  \item Hypothesis: $x$ is an integer
+        Conclusion: $x$ either even or odd, but not both
+  \item Hypothesis: $x^2 < 17$
+        Conclusion: $x$ is a positive real number.
+  \item Hypothesis: $x$ is an integer
+        Conclusion: $x^2 \geq 2$
+  \item Hypothesis: $f$ is a polynomial of odd degree
+        Conclusion: $f$ has at least one real root
+\end{enumerate}
+
+Remember that most mathematical statements can be rephrased as implications!
+
+\section{Mathematical Implication}
+\label{sec:mathematical_implication}
+
+We first start by talking about what it means for an implication to be true.
+\begin{exmp}
+  If $x$ is an integer, then $x^2 \geq 2$.  
+\end{exmp}
+\begin{proof}
+  If $x = 0$, then $x^2 = x$, so certainly $x^2 \geq x$. The same is true if $x
+  = 1$. If $x \geq 1$, then $x^2 > 1 \cdot x = x$ If $x < 0$ then $x^2 > 0 >
+  x$. This accounts for all integer values of $x$.
+\end{proof}
+
+Here we studied all the values of the variable $x$ that mate the hypothesis
+true. We then showed that in those cases the conclusion also is true. We did
+not care for the values of $x$ that were not integers because they are not relevant for our case.
+
+\begin{exrc}
+  We now consider the statement "If $x$ is an integer, then $x^3 \geq x$."
+  \begin{enumerate}
+    \item Show that "If $x$ is an integer, then $x^3 \geq x$" is false.  \item
+      Thinking in terms of hypotheses and conclusions, explain what you did to
+      show that the statement is false.
+  \end{enumerate}
+\end{exrc}
+
+To show that this statement is false, we simply have to find one
+counter-example where we have an integer, but its cube is less than itself.  If
+we for example let $x = -2$ we have that $x^3 = -8$ hence the statement is
+clearly false.
+
+In terms of hypotheses and conclusions, we only considered the values for $x$
+that make the hypothesis true. Namely the integers. Then proceeded to find a
+value for $x$ that satisfied the hypothesis yet did not satisfy the conclusion.
+Hence a contradiction was found and the statement was proved to be false.
+
+A value of $x$ that makes the hypothesis $A$ true and the conclusion $B$ false
+is called a \textbf{counterexample}\index{counterexample}.
+
+\begin{exrc}
+  Occasionally you will see "If $A$, then $B$" written as "$A$ is sufficient
+  for $B$" or "$B$ is necessary for $A$"or "$B$, if $A$" or "$A$ only if $B$".
+  Explain why it is sensible to say that each of these means the same thing.
+\end{exrc}
+
+"$A$ is sufficient for $B$" means that if we have that $A$ is true, then $B$
+also must be true because that $A$ is true is sufficient. This is equivalent to
+the implication. "$B$ is necessary for $A$" means that if we have $A$ then we
+also must have $B$. They essentially all mean the same thing.\footnote{I have
+no idea how to properly explain this}
+
+An implication in which the hypothesis is false is often said to be
+\textbf{vacously true}\index{vacuously true}. We define the implication to be
+true when the hypothesis is false because values that make the hypothesis false
+can never generate a counterexample.
+
+\section{Compund Statements and Truth Tables}
+\label{sec:compund_statements_and_truth_tables}
+
+Symbolically we write "If $A$, then $B$" as $A \impl B$\index{$\impl$}, which is
+read "\textbf{A implies B}". 
+
+\begin{table}[h!]
+  \centering
+  \caption{Truth table for implication}
+  \label{tab:implication}
+  \begin{tabular}{ccc}
+    \hline
+    A & B & A $\impl$ B \\
+    \hline
+    T & T & T \\
+    T & F & F \\
+    F & T & T \\
+    F & F & T \\
+    \hline
+  \end{tabular}
+\end{table}
+
+The above table is an example of a \textbf{truth table}\index{truth table}.
+In addition to implication we can combine statements $A$ and $B$ in a number of ways.
+\begin{enumerate}
+  \item "A and B" is called the \textbf{conjunction}\index{conjunction}\index{$\land$} of A and B. This is denoted $A \land B$.
+  \item "A or B" is called the \textbf{disjunction}\index{disjunction}\index{$\lor$} of A and B. We denote it by $A \lor B$.
+  \item "Not A" is called the \textbf{negation}\index{negation}\index{$\neg$} of A. We denote it $\neg A$.
+  \item "A if and only if B" is called the
+    \textbf{equivalence}\index{equivalence}\index{$\eqvl$} of A and B. We
+    denote it by $A \eqvl B$. ("If and only if" is often abbreviated
+    \textbf{iff}\index{iff}.)
+\end{enumerate}
+
+\begin{defn}
+  Suppose that A and B are statements. The following truth table gives the
+  truth values of all the previously mentioned compound statements.
+  \begin{table}[h!]
+    \centering
+    \caption{Compound statements}
+    \label{tab:comp_statements}
+    \begin{tabular}{ccccccc}
+    \hline 
+    {} & {} & A implies B & A and B & A or B & not A & A iff B \\
+     A & B & $A \impl B$ & $A \land B$ & $A \lor B$ & $\neg A$ & $A \eqvl B$ \\
+     T& T& T& T& T& F& T \\
+     T& F& F& F& T& F& F \\
+     F& T& T& F& T& T& F \\
+     F& F& T& F& T& T& T \\
+    \hline
+    \end{tabular}
+  \end{table}
+\end{defn}
+
+\begin{exrc}
+  Examine \cref{tab:comp_statements}. Given the colloquial meaning of terms
+  "and", "or", "not" and "equivalent" explain why the truth values in the table
+  make sense.
+\end{exrc}
+\begin{enumerate}
+  \item "and"
+    When we say that we want A \textit{and} B we want to have both at the same
+    time. Hence if either A or B is false then we do not have both and hence
+    the statement is false. This coincides with the truth table.
+  \item "or"
+    When we say "this or that" we mean "either this, or that, or both"
+    therefore we only require at least one of A or B to be true for the
+    statement "A or B" to be true.
+  \item "not"
+    Not is simply the negation. Hence if we have something, then the negation
+    of that is not having something.
+  \item "equivalent"
+    Two statements are equivalent if one can swap one for the other without
+    losing any meaning. In other words, we must have both A and B true or A and
+    B false for the equivalence to be true.
+\end{enumerate}
+
+\begin{exmp}
+  Given that $A$ and $B$ are statements we can look at the compound statements
+  \begin{enumerate}
+    \item $B \land \neg B$:
+      If we construct the truth table for this compound statement we see that
+      the statement is always false. A compound statement that is always false
+      is regardless of the truth value of the simpler statements involved is
+      called a \textbf{contradiction}\index{contradiction}. 
+    \item $(A \land \neg B) \eqvl \neg (A \impl B)$:
+      This compound statement is true no matter what the truth value of the
+      simpler statements involved is called a
+      \textbf{tautology}\index{tautology}.
+  \end{enumerate}
+\end{exmp}
+
+\pagebreak
+\begin{exrc}
+  Verify that
+  \begin{equation}
+    \notag
+    (A \impl (B \lor C)) \eqvl ((A \land \neg B) \impl C)
+  \end{equation}
+  is a tautology.
+  \begin{table}[h!]
+    \centering
+    \begin{tabular}{cccccccc}
+     \hline
+     A& B & C & $B \lor C$ & $\neg B$ & $A \land \neg B$ & $A \impl (B \lor C)$ & $(A \land \neg B)\impl C$ \\
+     \hline
+     T& T & T & T & F & F & T & T\\ 
+     T& T & F & T & F & F & T & T\\ 
+     T& F & T & T & T & T & T & T\\ 
+     T& F & F & F & T & T & F & F\\ 
+     F& T & T & T & F & F & T & T\\ 
+     F& T & F & T & F & F & T & T\\ 
+     F& F & T & T & T & F & T & T\\ 
+     F& F & F & F & T & F & T & T\\ 
+     \hline
+    \end{tabular}
+  \end{table}
+\end{exrc}
+We here see that the statements $(A \impl (B \lor C))$ and $((A \land \neg B)
+\impl C)$ have exactly the same truth values. We know that an equivalence only
+hold if the two statements have the same truth values for all possible values
+of the variables. Hence the equivalence is true no matter what, and we call it
+a tautology.
+
+\section{Learning from Truth Tables}
+\label{sec:learning_from_truth_tables}
+
+\begin{exrc}
+  Consider the following statements.
+  \begin{enumerate}
+    \item $(A \impl (B \land C)) \impl (A \impl B)$.
+    \item $(A \land (A \impl B)) \impl B$.
+    \item $((A \impl B) \land (B \impl C)) \impl (A \impl C)$.
+  \end{enumerate}
+  Each of these statements are tautologies. First verify using truth tables
+  that the statements are tautological. Then figure out what logical principles
+  each statement embodies and what they tell us about proving theorems.\footnote{I am going to skip creating the truth tables as they take some time.}
+\end{exrc}
+
+\begin{enumerate}
+    \item $(A \impl (B \land C)) \impl (A \impl B)$.
+      This statement tells us that if $A$ implies that $B$ and $C$ are true,
+      then that implies that $A$ implies that $B$ is true. This means, in terms
+      of proving theorems that we can show that the hypothesis implies a
+      stronger conclusion ($B \land C$) than the one we want to show, and thus
+      deduce that it must also hold for the weaker conclusion which we wanted
+      to show ($B$).
+    \item $(A \land (A \impl B)) \impl B$.
+      If we know that $A \impl B$ is true, and that $A$ is true, then we can
+      conclude with $B$ also being true.
+    \item $((A \impl B) \land (B \impl C)) \impl (A \impl C)$.
+      This statement tells us that implication has the transitive property. If
+      both $A$ implies $B$ and $B$ implies $C$, then it must follow that $A$
+      implies $C$. In terms of proving theorems, if we want to show that $A$
+      implies $C$, then and we know that $B$ implies $C$ we can instead chose
+      to prove that $A$ implies $B$. 
+\end{enumerate}
+ 
+\begin{defn}
+  The implication $B \impl A$ is called the \textbf{converse}\index{converse} of $A \impl B$.
+\end{defn}
+
+\pagebreak
+\begin{exrc}
+  Construct a truth table to show that it is possible for $A \impl B$ to be
+  true while its converse $B \impl A$ is false, and vice versa.
+\end{exrc}
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{cccc}
+    \hline
+    A & B & A $\impl$ B & B $\impl$ A \\
+    \hline
+    T & T & T& T\\
+    T & F & F& T\\
+    F & T & T& F\\
+    F & F & T& T\\
+    \hline
+  \end{tabular}
+\end{table}
+We here see that the implication and its converse are only equal in the two
+cases where $A$ and $B$ have the same truth value. Hence, we cannot simply flip
+the implication sign without changing the meaning of the statement.  Thus, we
+have to treat a statement and its converse as two distinct mathematical claims.
+\stepcounter{thm}
+\begin{exrc}
+  Find an example of a true statement whose converse is false and one whose converse is true. 
+\end{exrc}
+\begin{enumerate}
+  \item "If he lives in Oslo, then he lives in Norway" is true but has a false converse.
+  \item "If $x^3 = 1$, then $x = 1$" is true, and has a true converse.
+\end{enumerate}
+
+Let us consider the truth table for $A \eqvl B$:
+\begin{table}[h!]
+  \centering
+  \caption{Equivalence}
+  \label{tab:equivalence}
+  \begin{tabular}{ccc}
+  \hline
+   A&  B& A $\eqvl$ B\\
+   \hline
+   T&  T& T\\
+   T&  F& F\\
+   F&  T& F\\
+   F&  F& T\\
+   \hline
+  \end{tabular}
+\end{table}
+
+We see that $A$ and $B$ must have the same truth value for the equivalence to
+be true.  If $A \eqvl B$ is true, then we say that $A$ and $B$ are
+\textbf{equivalent}\index{equivalent}. If we manage to prove $A$ we know that
+$B$ is true as well and conversely.
+
+Equivalence of statements are important because when proving a statement we can instead chose to prove an equivalent statement. Consider a statement on the form "If $A$, then $B$ or $C$", we can instead chose to prove either
+\begin{enumerate}
+  \item If $A$ and not $B$, then $C$.
+  \item If $A$ and not $C$, then $B$.
+\end{enumerate}
+
+\begin{exrc}
+  Show by constructing a truth table that 
+  \begin{equation}
+    \notag
+    (A \eqvl B) \eqvl ((A \impl B) \land (B \impl A))
+  \end{equation}
+  is a tautology.
+\end{exrc}
+\begin{table}[h]
+  \centering
+  \begin{tabular}{ccccc}
+    \hline
+    A & B & A $\eqvl$ B & A ($\impl$ B) $\land$ (B $\impl$ A))\\
+    \hline
+    T& T& T& T\\
+    T& F& F& F\\
+    F& T& F& F\\
+    F& F& T& T\\
+    \hline
+  \end{tabular}
+\end{table}
+
+Hence, we can when proving equivalence of statements prove the one sided
+implication and its converse instead. This is an important thing to remember.
+
+\begin{exrc}
+  Construct a truth table for the following four statements:\\
+  \begin{tabular}{cccc}
+    $\neg(A\land B)$& $\neg A\land \neg B$ & $\neg(A\lor B)$ & $\neg A \lor \neg B$
+  \end{tabular} 
+\end{exrc}
+  \begin{table}[h!]
+    \centering
+    \begin{tabular}{cccccc}
+    \hline
+    A&  B&  $\neg(A\land B)$& $\neg A\land \neg B$ & $\neg(A\lor B)$ & $\neg A \lor \neg B$ \\
+    \hline
+   T&  T&  F&  F& F & F  \\
+   T&  F&  T&  F& F & T \\
+   F&  T&  T&  F& F & T \\
+   F&  F&  T&  T& T & T \\
+    \hline
+    \end{tabular}
+  \end{table}
+
+  We can from this see that the negation of a conjunction is the disjunction of
+  the negations and the negation of a disjunction is the conjunction of the
+  negations. These are what we call De'Morgans laws.
+
+  \section{Negating Statements}
+  \label{sec:negating_statements}
+  
+  Generally it is more useful to have a statement phrased positively. We can
+  say "It is not true that $A$" but it is more useful to say what \textit{is}
+  true, rather than what is not. For example, we typically rephrase the
+  statement "$x$ is not even" as "$x$ is even".
+\printindex
+\end{document}
