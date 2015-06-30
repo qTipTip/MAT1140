@@ -22,6 +22,7 @@
 \newtheorem{defn}[thm]{Definition}
 \newtheorem{exmp}[thm]{Example}
 \newtheorem{exrc}[thm]{Exercise}
+\newtheorem*{sltn}{Solution}
 
 \newcommand{\impl}{\Longrightarrow}
 \newcommand{\eqvl}{\Longleftrightarrow} 
@@ -225,12 +226,14 @@ A \textbf{statement}\index{statement} is a sentence that is either true or false
   Give some examples of sentences that are statements and some examples of sentences that are not statements.
 \end{exrc}
 
+\begin{sltn}
 \begin{enumerate}
   \item \textit{World War 2 ended in 1945} is a statement.
   \item \textit{The university campus was tranquil during the summer} is not a statement. What university are we talking about?
   \item \textit{The Eiffel tower is made of metal} is a statement.
   \item \textit{The building is made of bricks} is not a statement. Which building?
 \end{enumerate}
+\end{sltn}
 
 A sentence with one or more free variables in it that becomes a statement
 when the free variables takes on a particular value is called a
@@ -240,12 +243,13 @@ when the free variables takes on a particular value is called a
   Give examples of mathematical predicates that have two and three free variables.
 \end{exrc}
 
+\begin{sltn}
 \begin{enumerate}
   \item \textit{He ate bacon and eggs for breakfast} is a predicate with one free variable, "He".
   \item \textit{He said to her that he was leaving} is a predicate with two free variables, "He" and "She".
   \item $x ^ 2 + 3y = 12z$ is a predicate with three free variables, namely $x, y$ and $z$.
-
 \end{enumerate}
+\end{sltn}
 
 \section{Quantification}
 
@@ -265,11 +269,13 @@ quantifiers to make statements out of predicates is called
   Suppose we understand the free variable $z$ to refer to fish.
 \end{exrc}
 
+\begin{sltn}
 If we let $A(z)$ stand for the predicate \textit{$z$ lives in the sea},
 then the statement "for all $z$, $A(z)$" is true.
 
 If we let $B(z)$ stand for the predicate \textit{$z$ is blue}, then the statement
 "for all $z, B(z)$" is false but "there exists $z$ such that $B(z)$" is true.
+\end{sltn}
 
 "For all" is called the \textbf{universal quantifier}\index{universal
 quantifier} and has the symbol $\forall$\index{$\forall$}.  "There exists \ldots such that"
@@ -293,6 +299,7 @@ Note that the order of quantification matters greatly.
   all} instead of \textit{there exists}?
 \end{exrc}
 
+\begin{sltn}
 It seems like the order of quantifiers do not matter as long as the
 quantifiers are the same. In other words, having two "for all" quantifiers it
 does not matter what order and similarly for two "there exists" quantifiers.
@@ -306,12 +313,14 @@ The first one asserts the existence of one single $x$ such that the equation
 holds for all $y$, which is obviously false. The second one however asserts the
 fact that no matter what number $x$ you pick you can always find a number $y$
 that has $x$ as its square.
+\end{sltn}
 
 \begin{exrc}
   Consider the predicate about integers "$x = 2y$". There are six distinct ways
   of quantifying this statement. Find all six and determine the truth value.
 \end{exrc}
 
+\begin{sltn}
 From the previous exercise, we can change the order of quantifiers without
 altering the meaning of the statement. Thus, we have six distinct ways of
 quantifying the statements.
@@ -324,6 +333,7 @@ quantifying the statements.
   \item $\forall y \exists x$ such that $x = 2y$. True.
   \item $\exists y \forall x$ such that $x = 2y$. False.
 \end{enumerate}
+\end{sltn}
 
 \section{Mathematical Statements}
 \label{sec:mathematical_statements}
@@ -349,6 +359,7 @@ as "For all $x$, if $A(x)$, then $B(x)$".
   the previous example. (pg. 14)
 \end{exrc}
 
+\begin{sltn}
 \begin{enumerate}
   \item Hypothesis: $x + y$ is odd and $y + z$
         Conclusion: $x + z$ is odd
@@ -361,6 +372,7 @@ as "For all $x$, if $A(x)$, then $B(x)$".
   \item Hypothesis: $f$ is a polynomial of odd degree
         Conclusion: $f$ has at least one real root
 \end{enumerate}
+\end{sltn}
 
 Remember that most mathematical statements can be rephrased as implications!
 
@@ -390,6 +402,7 @@ not care for the values of $x$ that were not integers because they are not relev
   \end{enumerate}
 \end{exrc}
 
+\begin{sltn}
 To show that this statement is false, we simply have to find one
 counter-example where we have an integer, but its cube is less than itself.  If
 we for example let $x = -2$ we have that $x^3 = -8$ hence the statement is
@@ -399,6 +412,7 @@ In terms of hypotheses and conclusions, we only considered the values for $x$
 that make the hypothesis true. Namely the integers. Then proceeded to find a
 value for $x$ that satisfied the hypothesis yet did not satisfy the conclusion.
 Hence a contradiction was found and the statement was proved to be false.
+\end{sltn}
 
 A value of $x$ that makes the hypothesis $A$ true and the conclusion $B$ false
 is called a \textbf{counterexample}\index{counterexample}.
@@ -408,12 +422,13 @@ is called a \textbf{counterexample}\index{counterexample}.
   for $B$" or "$B$ is necessary for $A$"or "$B$, if $A$" or "$A$ only if $B$".
   Explain why it is sensible to say that each of these means the same thing.
 \end{exrc}
-
+\begin{sltn}
 "$A$ is sufficient for $B$" means that if we have that $A$ is true, then $B$
 also must be true because that $A$ is true is sufficient. This is equivalent to
 the implication. "$B$ is necessary for $A$" means that if we have $A$ then we
 also must have $B$. They essentially all mean the same thing.\footnote{I have
 no idea how to properly explain this}
+\end{sltn}
 
 An implication in which the hypothesis is false is often said to be
 \textbf{vacously true}\index{vacuously true}. We define the implication to be
@@ -479,6 +494,7 @@ In addition to implication we can combine statements $A$ and $B$ in a number of 
   "and", "or", "not" and "equivalent" explain why the truth values in the table
   make sense.
 \end{exrc}
+\begin{sltn}
 \begin{enumerate}
   \item "and"
     When we say that we want A \textit{and} B we want to have both at the same
@@ -496,6 +512,7 @@ In addition to implication we can combine statements $A$ and $B$ in a number of 
     losing any meaning. In other words, we must have both A and B true or A and
     B false for the equivalence to be true.
 \end{enumerate}
+\end{sltn}
 
 \begin{exmp}
   Given that $A$ and $B$ are statements we can look at the compound statements
@@ -520,6 +537,8 @@ In addition to implication we can combine statements $A$ and $B$ in a number of 
     (A \impl (B \lor C)) \eqvl ((A \land \neg B) \impl C)
   \end{equation}
   is a tautology.
+\end{exrc}
+\begin{sltn}
   \begin{table}[h!]
     \centering
     \begin{tabular}{cccccccc}
@@ -537,12 +556,12 @@ In addition to implication we can combine statements $A$ and $B$ in a number of 
      \hline
     \end{tabular}
   \end{table}
-\end{exrc}
 We here see that the statements $(A \impl (B \lor C))$ and $((A \land \neg B)
 \impl C)$ have exactly the same truth values. We know that an equivalence only
 hold if the two statements have the same truth values for all possible values
 of the variables. Hence the equivalence is true no matter what, and we call it
 a tautology.
+\end{sltn}
 
 \section{Learning from Truth Tables}
 \label{sec:learning_from_truth_tables}
@@ -558,7 +577,7 @@ a tautology.
   that the statements are tautological. Then figure out what logical principles
   each statement embodies and what they tell us about proving theorems.\footnote{I am going to skip creating the truth tables as they take some time.}
 \end{exrc}
-
+\begin{sltn}
 \begin{enumerate}
     \item $(A \impl (B \land C)) \impl (A \impl B)$.
       This statement tells us that if $A$ implies that $B$ and $C$ are true,
@@ -577,7 +596,7 @@ a tautology.
       implies $C$, then and we know that $B$ implies $C$ we can instead chose
       to prove that $A$ implies $B$. 
 \end{enumerate}
- 
+\end{sltn} 
 \begin{defn}
   The implication $B \impl A$ is called the \textbf{converse}\index{converse} of $A \impl B$.
 \end{defn}
@@ -587,6 +606,7 @@ a tautology.
   Construct a truth table to show that it is possible for $A \impl B$ to be
   true while its converse $B \impl A$ is false, and vice versa.
 \end{exrc}
+\begin{sltn}
 \begin{table}[h!]
   \centering
   \begin{tabular}{cccc}
@@ -604,14 +624,17 @@ We here see that the implication and its converse are only equal in the two
 cases where $A$ and $B$ have the same truth value. Hence, we cannot simply flip
 the implication sign without changing the meaning of the statement.  Thus, we
 have to treat a statement and its converse as two distinct mathematical claims.
+\end{sltn}
 \stepcounter{thm}
 \begin{exrc}
   Find an example of a true statement whose converse is false and one whose converse is true. 
 \end{exrc}
+\begin{sltn}
 \begin{enumerate}
   \item "If he lives in Oslo, then he lives in Norway" is true but has a false converse.
   \item "If $x^3 = 1$, then $x = 1$" is true, and has a true converse.
 \end{enumerate}
+\end{sltn}
 
 Let us consider the truth table for $A \eqvl B$:
 \begin{table}[h!]
@@ -649,6 +672,7 @@ Equivalence of statements are important because when proving a statement we can 
   \end{equation}
   is a tautology.
 \end{exrc}
+\begin{sltn}
 \begin{table}[h]
   \centering
   \begin{tabular}{ccccc}
@@ -662,6 +686,7 @@ Equivalence of statements are important because when proving a statement we can 
     \hline
   \end{tabular}
 \end{table}
+\end{sltn}
 
 Hence, we can when proving equivalence of statements prove the one sided
 implication and its converse instead. This is an important thing to remember.
@@ -672,6 +697,7 @@ implication and its converse instead. This is an important thing to remember.
     $\neg(A\land B)$& $\neg A\land \neg B$ & $\neg(A\lor B)$ & $\neg A \lor \neg B$
   \end{tabular} 
 \end{exrc}
+\begin{sltn}
   \begin{table}[h!]
     \centering
     \begin{tabular}{cccccc}
@@ -685,10 +711,10 @@ implication and its converse instead. This is an important thing to remember.
     \hline
     \end{tabular}
   \end{table}
-
+\end{sltn}
   We can from this see that the negation of a conjunction is the disjunction of
   the negations and the negation of a disjunction is the conjunction of the
-  negations. These are what we call De'Morgans laws.
+  negations. These are what we call \textbf{De Morgan's laws}.\index{De Morgan's laws}
 
   \section{Negating Statements}
   \label{sec:negating_statements}
@@ -696,6 +722,33 @@ implication and its converse instead. This is an important thing to remember.
   Generally it is more useful to have a statement phrased positively. We can
   say "It is not true that $A$" but it is more useful to say what \textit{is}
   true, rather than what is not. For example, we typically rephrase the
-  statement "$x$ is not even" as "$x$ is even".
+  statement "$x$ is not even" as "$x$ is odd".
+
+  \begin{exrc}
+    Rephrase the statement "$x$ is not greater than 7" in positive terms.
+  \end{exrc}
+  
+  \begin{sltn}
+    If $x$ is not greater than 7 then it has to be less than or equal to 7. Hence
+    the statement in positive terms is "$x$ is less than or equal to 7".
+  \end{sltn}
+
+  Sometimes it is impossible to rephrase a negative statement as a positive
+  statement. In that case, the negative statement will have to do.
+
+  \begin{exrc}
+    Think colloquially about the meaning of AND and AND/OR. Explain why it
+    makes sense for the negation of $A \lor B$ to be $\neg A \land \neg B$ and
+    for the negation of $A \land B$ to be $\neg A \lor \neg B$.
+  \end{exrc}
+  \begin{sltn}
+    What does it mean for $A \lor B$ to be false? Well, it is true if either
+    $A$  $B$ or both are true, hence we need both $A$ and $B$ to be false for
+    the negation to be true. 
+    What does it mean for $A \land B$ to be false? It is true only if $A$ and
+    $B$ are true, hence we need $A$ or $B$ or both to be false for the negation
+    to be true.
+  \end{sltn}
+
 \printindex
 \end{document}
