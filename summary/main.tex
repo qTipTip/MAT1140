@@ -13,9 +13,11 @@
 \usepackage[]{cleveref} 
 \usepackage[]{enumerate} 
 \usepackage[]{makeidx} 
+\usepackage[]{amsthm} 
+\usepackage[]{thmtools} 
+\renewcommand{\listtheoremname}{List of Exercises}
 \makeindex
 
-\usepackage[]{amsthm} 
 \theoremstyle{plain}
 \newtheorem{thm}{Theorem}[section]
 \theoremstyle{definition}
@@ -714,14 +716,14 @@ implication and its converse instead. This is an important thing to remember.
 \end{sltn}
   We can from this see that the negation of a conjunction is the disjunction of
   the negations and the negation of a disjunction is the conjunction of the
-  negations. These are what we call \textbf{De Morgan's laws}.\index{De Morgan's laws}
+  negations. These are what we call \textbf{De Morgan's laws}.\index{De
+  Morgan's laws}
 
   \section{Negating Statements}
   \label{sec:negating_statements}
   
   Generally it is more useful to have a statement phrased positively. We can
-  say "It is not true that $A$" but it is more useful to say what \textit{is}
-  true, rather than what is not. For example, we typically rephrase the
+  say "It is not true that $A$" but it is more useful to say what \textit{is} true, rather than what is not. For example, we typically rephrase the
   statement "$x$ is not even" as "$x$ is odd".
 
   \begin{exrc}
@@ -729,8 +731,8 @@ implication and its converse instead. This is an important thing to remember.
   \end{exrc}
   
   \begin{sltn}
-    If $x$ is not greater than 7 then it has to be less than or equal to 7. Hence
-    the statement in positive terms is "$x$ is less than or equal to 7".
+    If $x$ is not greater than 7 then it has to be less than or equal to 7.
+    Hence the statement in positive terms is "$x$ is less than or equal to 7".
   \end{sltn}
 
   Sometimes it is impossible to rephrase a negative statement as a positive
@@ -744,11 +746,22 @@ implication and its converse instead. This is an important thing to remember.
   \begin{sltn}
     What does it mean for $A \lor B$ to be false? Well, it is true if either
     $A$  $B$ or both are true, hence we need both $A$ and $B$ to be false for
-    the negation to be true. 
-    What does it mean for $A \land B$ to be false? It is true only if $A$ and
-    $B$ are true, hence we need $A$ or $B$ or both to be false for the negation
-    to be true.
+    the negation to be true.  What does it mean for $A \land B$ to be false? It
+    is true only if $A$ and $B$ are true, hence we need $A$ or $B$ or both to
+    be false for the negation to be true.
   \end{sltn}
 
+  \begin{exrc}
+    Negate the following statements and if possible restate the statement in positive terms.
+    \begin{enumerate}
+      \item $x + y$ is even and $y + z$ is even.($x, y, z$ are fixed integers)
+      \item $x > 0$ and $x$ is rational. ($x$ is a fixed real number)
+      \item Either $l$ is parallel to $m$ or $l$ and $m$ are the same line.($l$ and $m$ are fixed lines in $\mathbb{R^2}$)
+      \item The roots of this polynomial are either all real or all complex. 
+    \end{enumerate}
+  \end{exrc}
+  
 \printindex
+\twocolumn
+\listoftheorems[ignoreall, show=exrc]
 \end{document}
