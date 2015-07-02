@@ -127,6 +127,7 @@ sympy-plots-for-*.tex/
 
 # vim swapfiles
 *.swp
+*.swo
 
 # listoftheorems
 *.loe

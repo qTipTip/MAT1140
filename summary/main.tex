@@ -24,6 +24,7 @@
 \newtheorem{defn}[thm]{Definition}
 \newtheorem{exmp}[thm]{Example}
 \newtheorem{exrc}[thm]{Exercise}
+\newtheorem{prbl}[thm]{Problem}
 \newtheorem*{sltn}{Solution}
 
 \newcommand{\impl}{\Longrightarrow}
@@ -40,6 +41,13 @@
 
 \maketitle
 
+\abstract
+This document is a series of notes and commentaries related to the course
+MAT1140 - Structures and Arguments lectured at the University of Oslo (UiO).
+This is my attempt to organize and structure my work in this course, as well as
+giving me an easy way of referring back to the course material. The document is
+highly personal, but if someone can get any use from it, then by all means - go
+ahead! 
 \tableofcontents
 
 \chapter{Logic}
@@ -437,7 +445,7 @@ An implication in which the hypothesis is false is often said to be
 true when the hypothesis is false because values that make the hypothesis false
 can never generate a counterexample.
 
-\section{Compund Statements and Truth Tables}
+\section{Compound Statements and Truth Tables}
 \label{sec:compund_statements_and_truth_tables}
 
 Symbolically we write "If $A$, then $B$" as $A \impl B$\index{$\impl$}, which is
@@ -772,8 +780,313 @@ implication and its converse instead. This is an important thing to remember.
       \item This is a disjunction.  "$l$ is not parallel to $m$ and $l$ and $m$
         are not the same line". This can also be rephrased in positive terms as
         "$l$ intersects $m$ and $l$ and $m$ are distinct lines."
+      \item This is a conjunction, so the negation becomes "There exist a root
+        of this polynomial that is not real nor complex. Remember we have the
+        assumed universal quantifier, hence we get an "There exist" in the
+        negation.
     \end{enumerate}
   \end{sltn}
+
+  \begin{exrc}
+    Using similar reasoning, find the negation of the statement "There exists a fast snail."
+  \end{exrc}
+  \begin{sltn}
+    What does it mean for this statement to be false? In that case we must have
+    no fast snails. Hence we get the negation "All snails are slow".
+  \end{sltn}
+  
+  \begin{exrc}
+    Negate the following statements and rephrase them in positive terms.
+    \begin{enumerate}
+      \item There exists a line in the plane passing through the points $(-1, 1), (2, -1)$, and $(3, 0)$.
+      \item There exists an odd prime number.
+      \item For all real numbers $x, x^3 = x$.
+      \item Every positive integer is the sum of distinct powers of three.
+      \item For all positive real numbers $x$ there exists a real number $y$
+        such that $y^2 = x$
+      \item There exists a positive real number $y$ such that for all real
+        numbers $x, y^2 = x$.
+    \end{enumerate}
+  \end{exrc}
+  \begin{sltn} We negate each statement:
+    \begin{enumerate} 
+      \item All lines in the plane does not pass through the points $(-1, 1), (2, -1)$, and $(3, 0)$.
+      \item All prime numbers are even.
+      \item There exists a real number $x$ such that $x^3 \neq x$.
+      \item There exists a positive integer that is not the sum of distinct powers of three.
+      \item There exists a real number $x$ such that for all real numbers $y$, $y^2 \neq x$.
+      \item For all positive real numbers $y$ there exists a real number $x$
+        such that $y^2 \neq x$.
+    \end{enumerate} 
+  \end{sltn}
+
+  \stepcounter{thm}
+  We now look at a more complex example. Consider the statement "All Martians
+  are short and bald, or my name isn't Darth Vader".  We can negate this by
+  considering the various sub-statements.  The negation becomes "Either some
+  Martian is tall or some Martian has hair, and my name is Darth Vader."
+
+  We can now try our hands at the following problem
+  \begin{prbl}
+    Try to negate
+    \begin{quote}
+      \textit{You can fool some of the people all of the time, and some of the
+      people none of the time, but you cannot fool all of the people all of the
+    time.}
+    \end{quote}
+  \end{prbl}
+
+  \begin{sltn}
+    We need to decompose this statement into the various sub-statements.  Let
+    $A(x)$ = You can fool $x$ all of the time" and $B(x)$ = "You can fool $x$
+    none of the time". Our statement then become, having $x$ refer to a person.
+    There exists an $x$ such that $A(x)$ and there exist an $x$ such that
+    $B(x)$, but not all $x$ can be fooled all of the time.\footnote{This is not
+    finished, having problems creating the sub-statements I need in order to
+  show this. I'll revisit this later.}
+  \end{sltn}
+ 
+  \pagebreak
+  \begin{exrc}
+    Show by constructing a truth table the equivalence of the two statements:
+    \begin{quote}
+      $\neg (A \impl B)$ and $A \land \neg B$.
+    \end{quote}
+  \end{exrc}
+  \begin{sltn}
+    \begin{table}[h!]
+      \centering
+      \caption{Negating an implication}
+      \begin{tabular}{cccc}
+        \hline
+        A & B & $ \neg(A \impl B)$ & $A \land \neg B$\\
+        \hline
+        T& T& F& F\\
+        T& F& T& T\\
+        F& T& F& F\\
+        F& F& F& F\\
+        \hline
+      \end{tabular}
+    \end{table}
+    This makes sense, since what does it mean for an implication to be false?
+    Namely to have a value that makes the hypothesis true but the conclusion
+    false.
+  \end{sltn}
+  \begin{exrc}
+    Negate the statement "If $x^2 > 14$, then $x < 10$."
+  \end{exrc}
+  \begin{sltn}
+    This is an implication, so we use what we just learned from the previous
+    exercise. We need the hypothesis to be true and the conclusion to be false.
+    Hence the negation becomes "$x ^2 > 14$ and $x > 10$". Actually, we have to
+    also negate the assumed universal quantification in the implication. So the
+    statement \textit{really} becomes "There exists an $x$ such that $x ^ 2 >
+    14$ and $x > 10$.
+  \end{sltn}
+
+  \begin{exrc}
+    Negate the following statements and rephrase them in positive terms.
+    \begin{enumerate}
+      \item If $x$ is an odd integer, then $x^2$ is an even integer.
+      \item If $x + y$ is odd and $y + z$ is odd, then $x + z$ is odd.
+      \item If $f$ is a continuous function, then $f$ is a differentiable
+        function.
+      \item If $f$ is a polynomial, then $f$ has at least one real root.
+    \end{enumerate}
+  \end{exrc}
+  \begin{sltn}
+    Remembering the assumed universal quantification we negate each
+    statement.\footnote{Being fairly verbose here, just to emphasize the
+    quantifiers.}
+    \begin{enumerate}
+      \item There exists $x$ such that $x$ is an odd integer and $x^2$ is an
+        odd integer.
+      \item There exists an $x$ and there exists a $y$ and there exists a $z$
+        such that $x + y$ is even or $y + z$ is even and $x + z$ is even.
+      \item There exists an $f$ such that $f$ is a continuous function and $f$
+        is not differentiable.
+      \item There exists an $f$ such that $f$ is a polynomial and $f$ has no
+        real roots.
+    \end{enumerate}
+  \end{sltn}
+
+  \begin{exrc}
+    Let $f$ be the function $ f : \mathbb{R} \rightarrow \mathbb{R}$. Negate
+    the following statement:
+    \begin{quote}
+      \textit{For all positive real numbers $r$, there exists a positive real
+      number $s$ such that if the distance from $y$ to $3$ is less than $s$,
+    then the distance from $f(y)$ to $7$ is less than $r$.}
+    \end{quote}
+  \end{exrc}
+  \begin{sltn}
+  I am going to rewrite this in mathematical notation, just to make the negation easier.
+  We have:
+  \begin{equation}
+    \notag
+    \forall r > 0, \exists s > 0 \text{ s.t } |y - 3| < s \impl |f(y) - 7| < r.
+  \end{equation}
+  We here see that we have quantified over all variables except $y$, hence we
+  have to assume universal quantification over $y$. This gives us
+  \begin{equation}
+    \notag
+    \forall r > 0, \exists s > 0 \text{ s.t }\forall y,  |y - 3| < s \impl |f(y) - 7| < r.
+  \end{equation}
+
+  We can now consider the sub-statements involved. 
+  The statement is on the form $\forall r \exists s \text{ s.t } (A(s, y) \impl B(y, r))$,
+  which in turn can be written as $\forall r \exists s$ s.t $P(s, r, y)$.
+  We start negating:
+  \begin{enumerate}[i.]
+    \item $\exists r \forall s \exists y (\neg P(s, r, y))$.
+    \item $\exists r \forall s \exists y (A(s, y) \land \neg B(r, r))$.
+    \item $\exists r \forall s \exists y (|y - 3| < s \land |f(y) - 7| \geq r)$.
+  \end{enumerate}
+  Thus the negated statement is
+  \begin{quote}
+    \textit{There exists a positive real number $r$ such that for all positive
+    real numbers $s$ there exists a $y$ such that the distance from $y$ to $3$
+  is less than $s$ but the distance from $f(y)$ to 7 is greater than or equal
+to $r$.}
+  \end{quote}
+  \end{sltn}
+
+\section{Existence Theorems}
+\label{sec:existence_theorems}
+
+A theorem that asserts the existence of something is called an \textbf{existence theorem}\index{existence theorem}. We prove existence theorems in two steps.
+\begin{enumerate}
+  \item Produce a "candidate". 
+  \item We show that our candidate satisfies the theorem.
+\end{enumerate}
+
+Remember that when proving existence theorems, one does not actually need to
+tell where the candidate came from. As long as it is given explicitly and is
+shown to satisfies the requirements.
+
+\section{Uniqueness Theorems}
+\label{sec:uniqueness_theorems}
+
+A theorem that guarantees the uniqueness of a mathematical object is called a
+\textbf{uniqueness theorem}\index{uniqueness theorem}.
+\begin{exmp}
+  Assume that $x^3 + 37$ has a real root. Prove that it is has only one.
+  \begin{proof}
+    Assume that $x_1$ and $x_2$ are real numbers and that $x_1^3 + 37 = 0$ and
+    $x_2^3 + 37 = 0$. Then $x_1 ^3 = x_2^3$. Since cube roots of real numbers
+    are unique, $x_1 = x_2$.
+  \end{proof}
+\end{exmp}
+
+\section{Examples and Counterexamples}
+\label{sec:examples_and_counterexamples}
+
+In order to prove that an implication is false, we need to provide a counterexample.
+When we provide a counterexample, we are just showing that such a value exists. 
+
+\begin{exrc}
+  Give counterexamples to the following proposed (but false) statements.
+  \begin{enumerate}
+    \item If a real number is greater than 5, it is less than 10.
+    \item If $x$ is a real number, $x^3 = x$.
+    \item All prime numbers are odd numbers. \textit{What is the hypothesis
+      here? What is the conclusion?}
+    \item If $x+y$ is odd and $y+z$ is odd, then $x + z$ is odd.
+    \item Given three distinct points in space, there is one and only one plane
+      passing through all three points.
+  \end{enumerate}
+\end{exrc}
+\begin{sltn}
+  \begin{enumerate}
+    \item Let $x$ be the real number $11$. Then $x > 5$ but $x \not< 10$.
+    \item Let $x$ be the real number $2$. Then $x^3 = 8 \neq x$.
+    \item The number $2$ is by definition a prime number, but it can be written
+      on the form $2n$ where $n = 1$. Hence $2$ is an even prime number.  The
+      hypothesis here is $x$ is a prime number, and the conclusion is $x$ is
+      odd.
+    \item Let $x = 1$, $y = 2$, and $z = 1$. Then $x + y$ is odd, $y + z$ is
+      odd, but $x + z$ is even.
+    \item If we chose three points in $ \mathbb{R}$ along the $x$-axis, say
+      $(0, 0, 0), (1, 0, 0)$ and $(2, 0, 0)$ then we have an infinite number of
+      planes passing through these three points.
+  \end{enumerate}  
+\end{sltn}
+
+\begin{exrc}
+  Think about the implications given in the thought experiment. When you
+  decided that one of them was false, did you justify your conclusion by means
+  of a counter example? 
+\end{exrc}
+
+\begin{sltn}
+  In the cases where I immediately saw an appropriate counter-example, I
+  described it.  I could probably rewrite the ones I did not find a proof for
+  using the language we now have learned. 
+\end{sltn}
+
+The process in which we draw conclusions about the general based on the
+particular is called \textbf{inductive reasoning}\index{inductive reasoning}.
+This is contrasted with \textbf{deductive reasoning}\index{deductive
+reasoning}, which is the process of using the rules of logic to deduce logical
+consequences.  In other words, inductive reasoning is how we make conjectures
+in mathematics, where as deductive reasoning is how we prove these conjectures.
+
+The moral of the story is that providing a counterexample is \textbf{conclusive
+proof}\index{conclusive proof} that an implication is false. Just checking a
+large number of examples, without being able to check all of them does not
+prove an implication in general.
+
+\section{Direct Proof}
+\label{sec:direct_proof}
+
+Remember that the statement "If $A$, then $B$" is true for all values of the
+variables that make $A$ true make $B$ true also. Thus, one way of verifying
+that the implication holds is the check all possible cases where the hypothesis
+holds and see if the conclusion is true.
+
+When an implication is proven by assuming that the hypothesis is true and then
+showing that the conclusion is also true, the proof is called a \textbf{direct
+proof}\index{direct proof}.
+
+An example of a direct proof is the proof for the fact that if $x$ is an even
+integer, then $x^2$ is an even integer.
+
+\begin{exrc}
+  If you haven't done so already, use the method of direct proof to prove that
+  if $x + y$ is an even integer and $y + z$ is an even integer, then $x + z$
+  is an even integer.
+\end{exrc}
+\begin{sltn}
+  We first assume that the hypothesis is true, and then we see if we can prove
+  that the conclusion must be true as well. Assume that $x + y$ and $y + z$ are
+  even numbers.  We then know that $x + y = 2n$ and $y + z = 2m$ for some
+  appropriate integers $n$ and $m$.  Solving these two equations for $x$ and
+  $z$ we get that $x = 2n - y$ and $z = 2m - y$. Hence 
+  \begin{equation}
+    \notag
+    x + z = 2n - y + 2m - y = 2(n + m - y),
+  \end{equation}
+  where $n + m - y$ is an integer. Thus, $x + z$ is an even number. 
+\end{sltn}
+
+In addition to direct proof, we have two other common proof techniques, namely
+proof by contrapositive and proof by contradiction.
+
+\section{Proof by Contrapositive}
+\label{sec:proof_by_contrapositive}
+
+
 \printindex
-\listoftheorems[ignoreall, show=exrc]
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
