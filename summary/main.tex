@@ -2,6 +2,7 @@
 
 \usepackage{palatino}
 \usepackage{mathpazo}
+\usepackage[]{pifont} 
 
 \usepackage[margin=1in]{geometry}
 \usepackage{microtype}
@@ -15,6 +16,7 @@
 \usepackage[]{makeidx} 
 \usepackage[]{amsthm} 
 \usepackage[]{thmtools} 
+\usepackage[]{ulem} 
 \renewcommand{\listtheoremname}{List of Exercises}
 \makeindex
 
@@ -47,7 +49,9 @@ MAT1140 - Structures and Arguments lectured at the University of Oslo (UiO).
 This is my attempt to organize and structure my work in this course, as well as
 giving me an easy way of referring back to the course material. The document is
 highly personal, but if someone can get any use from it, then by all means - go
-ahead! 
+ahead! The document is following the curriculum outlined by the book
+\textit{Chapter Zero - Fundamental Notions of Abstract Mathematics (2. Ed)}  by Carol
+Schumacher.
 \tableofcontents
 
 \chapter{Logic}
@@ -202,10 +206,9 @@ out what the statement means, and whether it is true or false.
 
   \item Given three distinct points in space, there is one and only one plane passing through them.
 
-    This is fairly obvious, and this is a typical uniqueness-proof in
-    mathematics. By assuming that there are two distinct planes passing
-    through the same points, one can show that these two planes must
-    actually be equal.
+    A plane is uniquely defined by three points in space only if they do not
+    lie on the same line in space. Hence this statement is false, consider for
+    instance three points lying on the $x$-axis.
 
 \end{enumerate} 
 
@@ -1072,21 +1075,376 @@ integer, then $x^2$ is an even integer.
 In addition to direct proof, we have two other common proof techniques, namely
 proof by contrapositive and proof by contradiction.
 
+\pagebreak
 \section{Proof by Contrapositive}
 \label{sec:proof_by_contrapositive}
+\begin{exrc}
+  Let $A$ and $B$ be predicates. Construct a truth table to show that the
+  statements $A \impl B$ and $\neg B \impl \neg A$ are equivalent.
+\end{exrc}
+\begin{sltn}
+  We construct the truth table:
+  \begin{table}[h!]
+    \begin{tabular}{cccc}
+      \hline
+      $A$ & $B$ & $A \impl B$ & $\neg A \impl \neg B$\\
+      \hline
+      T& T& T& T\\
+      T& F& F& F\\
+      F& T& T& T\\
+      F& F& T& T\\
+      \hline
+    \end{tabular}
+  \end{table}
+\end{sltn}
 
+These two statements are clearly equivalent, hence we can view the statement
+"If not B, then not A" as a rephrasing of "If A, then B".
+\begin{defn}
+  The statement $\neg B \impl \neg A$ is called the
+  \textbf{contrapositive}\index{contrapositive} of the statement $A \impl B$.
+\end{defn}
 
+\begin{exrc}
+  Find the contrapositives of the following statements, and rewrite in positive terms when possible.
+  \begin{enumerate}
+    \item If $x < 0$ then $x^2 > 0$.
+    \item If $x \neq 0$ then there exists $y$ for which $xy = 1$.
+    \item If $x$ is an even integer, then $x^2$ is an even integer.
+    \item If $x + y$ is odd and $y + z$ is odd, then $x + z$ is odd.
+    \item If $f$ is a polynomial of odd degree, then $f$ has at least one real root.
+  \end{enumerate}
+\end{exrc}
+\begin{sltn}
+    We find the contrapositives.
+   \begin{enumerate}
+    \item If $x^2 \leq 0$ then $x > 0$.
+    \item This is on the form "If $\forall y, xy \neq 1$, then $x = 0$. Or in
+      words: "If for all $y$, $xy \neq 1$ then $x = 0$.\footnote{This statement
+      essentially asserts the existence of the reciprocal of all non-zero real
+    numbers.}
+   \item If $x^2$ is an odd integer, then $x$ is an odd integer.
+   \item If $x + z$ is even, then $x + y$ is even or $y + z$ is even.
+   \item If $f$ has no real root, then $f$ is a polynomial of even degree.
+   \end{enumerate} 
+\end{sltn}
+
+\begin{exrc}
+  Use your intuition for implication to explain why "If A, then B" and its
+  contrapositive is saying the same thing.
+\end{exrc}
+\begin{sltn}
+  If an implication is true, then we know that whenever $A$ is true, $B$ must
+  also be true.  Hence, if $B$ is not true, we cannot have that $A$ is true, when
+  the implication is true. This means that the negation of $B$ must imply the
+  negation of $A$ whenever the implication "If A, then B" is true.
+\end{sltn}
+
+A proof in which the contrapositive is proved instead of "If A, then B" is
+called a \textbf{proof by contraposition}\index{proof by contrapositive} or a
+\textbf{proof by contrapositive}. One simply finds out what the contrapositive
+of the statement is and then proceeds to prove the contrapositive using a
+direct proof. This works because the contrapositive is also an implication.
+
+\section{Proof by Contradiction}
+\label{sec:proof_by_contradiction}
+
+\begin{exrc}
+  Let $A, B, Q$ and $P$ be statements. Construct a truth table to show that the
+  following statements are equivalent:
+  \begin{equation}
+    \notag
+    Q \text{ and } \neg Q \impl (P \land \neg P), 
+  \end{equation}
+  \begin{equation}
+    \notag
+    A \impl B \text{ and } (A \land \neg B) \impl (P \land \neg P).
+  \end{equation}
+\end{exrc}
+\begin{sltn}
+  We construct a truth table (I chose to omit the values for $A$ and $B$
+  because the second line of equivalent statements follow from the first.)
+  \begin{center} 
+  \begin{tabular}{ccc}
+    \hline
+    $Q$& $P$& $\neg Q \impl (P \land \neg P)$\\
+    \hline
+    T&  T& T\\
+    T&  F& T\\
+    F&  T& F\\
+    F&  F& F\\
+    \hline
+  \end{tabular}
+\end{center}
+If we now let $Q = A \impl B$, then we see that the negation of $Q$ implies a
+contradiction.
+\end{sltn}
+Also note that the statement $P$ need not have anything to do with the
+statements $A, B$ or $Q$.
+
+\begin{exrc}
+  Suppose you have statements $X$ and $Y$ in which
+  \begin{equation}
+    \notag
+    X = A \impl B, \text{ so that } \neg X = A \land \neg B, \text{ and}
+  \end{equation}
+  \begin{equation}
+    \notag
+    Y = P \land \neg P.
+  \end{equation}
+  If you know that $\neg X \impl Y$ is true, and $Y$ is false. What can you say
+  about the truth value of $X$?
+\end{exrc}
+\begin{sltn}
+  Given that the conclusion $Y$ of a true implication is false, we know that
+  the hypothesis $\neg X$ must be false for the implication to be true. It then
+  follows that $X$ must be true.  Thus $A \impl B$ is true.
+\end{sltn}
+
+There is a proof technique called \textbf{proof by contradiction}\index{proof
+by contradiction}, in which we first assume the statement we want to prove ($A
+\impl B$) to be false, and then show that this implies something we know to be
+false ($P \land \neg P$).
+
+\stepcounter{thm}
+\begin{exrc}
+  Use proof by contradiction to prove that "If $x$ is an integer, then $x$
+  cannot be both even and odd".
+\end{exrc}
+\begin{sltn}
+  We first observe that this is an implication on the form "If $A$, then $B$".
+  We therefore assume the negation of this, namely $A \land \neg B$, and show
+  that this leads to a contradiction, namely $P \land \neg P$.
+
+  Assume that $x$ is an integer and $x$ is both even and odd. Since $x$ is even we can write
+  \begin{equation}
+    x = 2n
+  \end{equation}
+  for some integer $n$, and since $x$ is odd we can write
+  \begin{equation}
+    x = 2m + 1
+  \end{equation}
+  for some integer $m$. If we add the two equations (1.1) and (1.2) then we get
+  \begin{equation}
+    \notag
+    2x = 2n + 2m + 1 = 2(n + m) + 1.
+  \end{equation}
+  Dividing by two yields
+  \begin{equation}
+    \notag
+    x = (n + m) + \frac{1}{2}.
+  \end{equation}
+  Here, $n + m$ is known to be an integer, hence $x$ cannot be an integer
+  because of the fraction $\frac{1}{2}$. This gives us the contradiction that
+  we wanted, since we initially assumed $x$ to be an integer. Thus our
+  contradicting statement is $P = $ "$x$ is an integer", and we have shown that
+  both $P$ and $\neg P$ hold. Therefore our assumption is wrong and $x$ cannot
+  be both even and odd.
+\end{sltn}
+
+\section*{Problems}
+\label{sec:problems_1}
+\addcontentsline{toc}{section}{Problems}
+
+In this and the following problem sections, I will not recite the whole problem
+text. Instead I will just answer the problem, in an effort to avoid too much
+text.
+
+\begin{enumerate}
+  \item Assuming variable $z$ to refer to (a) books, (b) automobiles, and (c) pencils.
+    \begin{enumerate}[a)]
+      \item The statement "For all $z$, $z$ has pages" is a true statement.
+        "For all $z$, $z$ is red" is false, but "There exists $z$, such that
+        $z$ is red" is true.
+      \item "For all $z$, $z$ has an engine" is true. "For all $z$, $z$ has
+        three wheels" is false, but "There exist $z$ such that $z$ has three
+        wheels" is true.
+      \item "For all $z$, $z$ can break" is true. "For all $z$, $z$ is blue" is
+        false, but "There exists $z$ such that $z$ is blue" is true.
+    \end{enumerate}
+
+  \item We want to find a predicate $T(x)$ such that $\forall x, T(x)$ is true,
+    but $\exists x, T(x)$ is false. But if we first consider what it means for
+    $\exists x, T(x)$ to be false it must be that the statement $\forall x,
+    \neg T(x)$ is true, which contradicts the fact that we want $\forall x, T(x)$ to be
+    true. Hence the two statements cannot both be true at the same time.
+
+  \item 
+    \begin{enumerate}[a)]
+      \item "If Dogs eat Meat, then Rome is in Italy" is a true statement.
+      \item "If Dogs eat Meat, then Chocolate prevents cavities" is a false
+        statements, since true implies false is false.
+      \item "If Chocolate prevents cavities, then The moon is made of green
+        cheese" is true, since false implies anything.
+      \item "If the moon is made of green cheese, then Rome is in Italy" is
+        also true. 
+      \item "If Rome is in Italy, then the moon is made of green cheese" is
+        false.
+    \end{enumerate}
+
+  \item 
+    The assertions are as follows A = "All cats have four legs.", B = "I have
+    four legs", C = "I am a cat." A is a predicate not a statement, but as soon
+    as we put it in an implication we assume universal quantification.
+    \begin{enumerate}[a)]
+      \item Truth table for "If A and B, then C"
+        \begin{table}[h!]
+          \centering
+        \begin{tabular}{cccc}
+          \hline
+          A&  B&  C& (A $\land$ B)$\impl$ C\\
+          \hline
+         T&  T&  T& T\\
+         T&  T&  F& F\\
+         T&  F&  T& T\\
+         T&  F&  F& T\\
+         F&  T&  T& T\\
+         F&  T&  F& T\\
+         F&  F&  T& T\\
+         F&  F&  F& T\\
+          \hline
+        \end{tabular}
+      \end{table}
+
+      \item Cross out the lines of the truth table that don't apply in
+        \textit{this particular instance}.
+        \begin{table}[h!]
+          \centering
+        \begin{tabular}{cccc}
+          \hline
+          A&  B&  C& (A $\land$ B)$\impl$ C\\
+          \hline
+          T&  T&  T& T \ding{55}\\
+          T&  T&  F& F \ding{51}\\
+          T&  F&  T& T \ding{55}\\
+          T&  F&  F& T \ding{55}\\
+          F&  T&  T& T \ding{55}\\
+          F&  T&  F& T \ding{55}\\
+          F&  F&  T& T \ding{55}\\
+          F&  F&  F& T \ding{55}\\
+          \hline
+        \end{tabular}
+      \end{table}
+      First of all he only considers the cases where all cats do have four legs
+      so we cross out the lines with A false. We then cross out all the lines
+      where "I have four legs" is false.  We finally cross out all the lines
+      where "I am a cat" is true, because the actual truth value is false.  We
+      are then left with the second line which tells us that the dog made the
+      wrong conclusion. However, the converse of this particular line is true.
+      So maybe the dog confused the statement for its converse?
+    \end{enumerate}
+  \item We refer to the equivalence discussed in example 1.7.6.
+    \begin{enumerate}[a)]
+      \item Why does it make sense to say that \textit{If A is true then either
+        B is true or C is true} is the same as \textit{If A is true and B is
+        false, then C is true}?
+      
+        If we first assume that the first statement is true. What does that
+        mean? Well, either A is true or A is false. Looking at the case where A
+        is true tells us that either B or C is true. Now, if we look at the
+        second statement, if A is true, and B is false. Then for the first
+        statement to still hold C must be true.
+
+        This is not very rigorous, but constructing a truth table will show
+        that it holds.
+      
+      \item We consider the statement "Every even integer greater than 2 can be expressed as the sum of two prime numbers".
+        We want to find two equivalent rephrasings of this statement. We first observe
+        that it is on the form
+        \begin{quote}
+          For all integers $x$, if $x$ is even and $x > 2$, then $x$ can be written as the sum of two prime numbers.
+        \end{quote}
+        We can now consider for instance the contrapositive of this statement:
+        \begin{quote}
+          For all integers $x$, if $x$ cannot be written as the sum of two
+          prime numbers, then $x$ is odd or $x \leq 2$.\footnote{I do
+          \textbf{not}negate the quantifier here because it is not part of the
+        conclusion nor the hypothesis hence does not get negated.}
+        \end{quote}
+
+        We can also rephrase the statement in terms of a contradiction. We assume the negation of the implication.
+        \begin{quote}
+          "If $x$ is even and $x > 2$, and $x$ cannot be written as the sum of
+          two prime numbers, then $P \land \neg P$."
+        \end{quote} 
+        where $P$ is some arbitrary statement.
+    \end{enumerate}  
+
+    I did not consider these restatements when doing the thought-experiment. It
+    does give a new perspective on the problem.
+
+  \item We now construct a truth table to show that $A \impl (B \lor C)$ and
+    $((A \impl B) \lor (A \impl C))$ are not equivalent statements.
+    
+    \begin{table}[h!]
+      \centering
+      \caption{caption}
+      \label{tab:label}
+      \begin{tabular}{ccccc}
+        \hline
+       A&  B&  C&  $A \impl (B \lor C)$& $((A \impl B) \lor (A \impl C))$\\
+        \hline
+       T&  T&  T&  T& T\\
+       T&  T&  F&  T& T\\
+       T&  F&  T&  T& T\\
+       T&  F&  F&  F& F\\
+       F&  T&  T&  T& T\\
+       F&  T&  F&  T& T\\
+       F&  F&  T&  T& T\\
+       F&  F&  F&  T& T\\
+        \hline
+      \end{tabular}
+    \end{table}
+    For some reason I get that the statements are equivalent. I'll take a
+    closer look at this later. Disregard this result for now.
+  
+    \item "Marlene has brown hair". Explain why "Marlene has blond hair" is
+      \textbf{not} the egation of this statement.
+      We have to consider what it means for this statement to be false. In this
+      case it is "Marlene does not have brown hair." This means that Marlene
+      can have any haircolor other than brown and the statement is still false.
+      It does not have to be blonde. 
+
+    \item Prove that there exists a unique line passing through two distinct
+      points $(a, b)$ and $(c, d)$ in $ \mathbb{R^2}$.
+       
+      We first need to prove the existence of such a \textit{straight}
+      line\footnote{ \textit{straight} is typically ommited when no ambiguity
+      arises}, and then we prove that the line is unique. A line is a set of
+      points $(x, y)$ that satisfy the relation $y = mx + s$ for some real
+      number $a$ and $b$.
+
+      Using the slope-intersect formula we get that the line given by the
+      equation
+      \begin{equation}
+        \notag
+        y = \frac{d - b}{c - a}(x - a) + b
+      \end{equation}
+      satisfies the two points. Plugging in $a$ and $c$ for $x$ yields $b$ and
+      $d$ respectively. We know need to show that this line is unique.
+    
+      We assume that there are two distinct lines $l$ and $m$ that both pass through the given points where $l$ and $m$ are given by
+      \begin{equation}
+        \notag
+        y = nx + r
+      \end{equation}
+      \begin{equation}
+        \notag
+        y = mx + s.
+      \end{equation}
+      We know that these satisfy the points $(a, b)$ and $(c, d)$, hence
+      \begin{equation}
+        \notag
+        na + r = b = ma + s, 
+      \end{equation}
+      and
+      \begin{equation}
+        \notag
+        nc + r = d = mc + s.
+      \end{equation}
+            
+\end{enumerate}
+\chapter{Sets}
+\label{cha:sets}
 \printindex
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
