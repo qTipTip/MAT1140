@@ -1047,7 +1047,7 @@ variables that make $A$ true make $B$ true also. Thus, one way of verifying
 that the implication holds is the check all possible cases where the hypothesis
 holds and see if the conclusion is true.
 
-When an implication is proven by assuming that the hypothesis is true and then
+When an implication is proved by assuming that the hypothesis is true and then
 showing that the conclusion is also true, the proof is called a \textbf{direct
 proof}\index{direct proof}.
 
@@ -1349,7 +1349,7 @@ text.
         that it holds.
       
       \item We consider the statement "Every even integer greater than 2 can be expressed as the sum of two prime numbers".
-        We want to find two equivalent rephrasings of this statement. We first observe
+        We want to find two equivalent rephrasing of this statement. We first observe
         that it is on the form
         \begin{quote}
           For all integers $x$, if $x$ is even and $x > 2$, then $x$ can be written as the sum of two prime numbers.
@@ -1373,43 +1373,42 @@ text.
     I did not consider these restatements when doing the thought-experiment. It
     does give a new perspective on the problem.
 
-  \item We now construct a truth table to show that $A \impl (B \lor C)$ and
-    $((A \impl B) \lor (A \impl C))$ are not equivalent statements.
-    
-    \begin{table}[h!]
-      \centering
-      \caption{caption}
-      \label{tab:label}
-      \begin{tabular}{ccccc}
-        \hline
-       A&  B&  C&  $A \impl (B \lor C)$& $((A \impl B) \lor (A \impl C))$\\
-        \hline
-       T&  T&  T&  T& T\\
-       T&  T&  F&  T& T\\
-       T&  F&  T&  T& T\\
-       T&  F&  F&  F& F\\
-       F&  T&  T&  T& T\\
-       F&  T&  F&  T& T\\
-       F&  F&  T&  T& T\\
-       F&  F&  F&  T& T\\
-        \hline
-      \end{tabular}
-    \end{table}
-    For some reason I get that the statements are equivalent. I'll take a
-    closer look at this later. Disregard this result for now.
+    \item We now construct a truth table to show that $A \impl (B \lor C)$ and
+      $((A \impl B) \lor (A \impl C))$ are not equivalent statements.
+      
+      \begin{table}[h!]
+        \centering
+        \label{tab:label}
+        \begin{tabular}{ccccc}
+          \hline
+         A&  B&  C&  $A \impl (B \lor C)$& $((A \impl B) \lor (A \impl C))$\\
+          \hline
+         T&  T&  T&  T& T\\
+         T&  T&  F&  T& T\\
+         T&  F&  T&  T& T\\
+         T&  F&  F&  F& F\\
+         F&  T&  T&  T& T\\
+         F&  T&  F&  T& T\\
+         F&  F&  T&  T& T\\
+         F&  F&  F&  T& T\\
+          \hline
+        \end{tabular}
+      \end{table}
+      For some reason I get that the statements are equivalent. I'll take a
+      closer look at this later. Disregard this result for now.
   
     \item "Marlene has brown hair". Explain why "Marlene has blond hair" is
-      \textbf{not} the egation of this statement.
+      \textbf{not} the negation of this statement.
       We have to consider what it means for this statement to be false. In this
       case it is "Marlene does not have brown hair." This means that Marlene
-      can have any haircolor other than brown and the statement is still false.
-      It does not have to be blonde. 
+      can have any hair color other than brown and the statement is still false.
+      It does not have to be blond. 
 
     \item Prove that there exists a unique line passing through two distinct
       points $(a, b)$ and $(c, d)$ in $ \mathbb{R^2}$.
        
       We first need to prove the existence of such a \textit{straight}
-      line\footnote{ \textit{straight} is typically ommited when no ambiguity
+      line\footnote{ \textit{straight} is typically omitted when no ambiguity
       arises}, and then we prove that the line is unique. A line is a set of
       points $(x, y)$ that satisfy the relation $y = mx + s$ for some real
       number $a$ and $b$.
@@ -1435,13 +1434,47 @@ text.
       We know that these satisfy the points $(a, b)$ and $(c, d)$, hence
       \begin{equation}
         \notag
-        na + r = b = ma + s, 
+        b = na + r = ma + s 
       \end{equation}
-      and
       \begin{equation}
         \notag
-        nc + r = d = mc + s.
+        d = nc + r = mc + s.
       \end{equation}
+      By rearranging these equations we get that
+      \begin{equation}
+        \notag
+        (n - m)a = r - s, 
+      \end{equation}
+      \begin{equation}
+        \notag
+        (n - m)c = r - s
+      \end{equation}
+      however, since we assumed that the points $(a, b)$ and $(c, d)$ were
+      different, this cannot hold at the same time unless $n = m$ and $r = s$.
+      We have therefore shown that the line passing through two distinct points
+      is unique.\footnote{How does work if the $x$-coordinates of the two
+      points are the same, but the $y$-coordinates differ? Does the linear
+    function argument work then?}
+
+  \item To show that an item is not \textit{unique} all we have to do is
+    provide two examples of objects that both satisfy the criteria, but are
+    different.
+ 
+  \item 
+    We want to prove that if $x$ is an odd integer, then $x^2$ is an odd integer.
+    \begin{enumerate}[a)]
+      \item "An integer is \textit{odd} if it can be written on the form $2n +
+        1$" is a definition of an odd integer written in positive terms. It
+        will be easier to work with, than the definition that relies on the
+        definition of an even integer.
+
+      \item We use a direct proof. Assume that the hypothesis is true, that $x$
+        is an odd integer. Then there exists an integer $n$ such that $x = 2n +
+        1$.  We now have $x^2 = (2n + 1)^2 = 4n + 2n + 1 = 2(2n + 1) + 1$. By
+        definition of an odd number $m = (2n + 1)$ is an integer that satisfies
+        the condition, hence $x^2 = 2m + 1$ is an odd number.
+    \end{enumerate}
+  
 \end{enumerate}
 \chapter{Sets}
 \label{cha:sets}
