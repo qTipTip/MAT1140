@@ -1478,5 +1478,143 @@ text.
 \end{enumerate}
 \chapter{Sets}
 \label{cha:sets}
+
+\section{Sets and Set Notation}
+\label{sec:sets_and_set_notation}
+
+\textbf{Set}\index{set}, \textbf{element}\index{element} and $\in$\index{$\in$}
+are the undefined terms of set theory.  A set is a collection of "things". An
+element is one of the things that lie in the set.  We write $x \in A$ is $x$ is
+an element of the set $A$. We write $x \notin A$ if $x$ is not in the set.
+
+To describe a set we say what elements are in the set,
+\begin{equation}
+  \notag
+  A  = \left\{ a, b, c, d \right\}, 
+\end{equation}
+\begin{equation}
+  \notag
+  S = \left\{ \left\{ 1, 2 \right\}, \left\{ 1, 3, 5 \right\}, \left\{ 1, 6, 8
+  \right\} \right\}   
+\end{equation}
+We can also describe a set by the properties its element has
+\begin{equation}
+  \notag
+  E = \left\{ e \in \mathbb{N} \mid e \text{ is the number of edges on one of
+  the five platnoic solids} \right\}.
+\end{equation}
+These sets are on the form $S = \left\{ x \in X \mid P(x) \right\}$ where
+$P(x)$ is a predicate in the free variable $x$ and $X$ is the set that gives
+the range of acceptable values for $x$.
+
+\stepcounter{thm}
+
+\begin{exmp}
+  Since we often talk about \textit{intervals} in $\mathbb{R}$, we use the \textbf{interval notation}\index{interval notation}. Suppose that $a$ and $b$ are fixed real numbers. Then
+  \begin{align*}
+    \left[ a, b \right] &= \left\{ x \in \mathbb{R} \mid a \leq x \leq b \right\} \\
+    \left[ a, b \right) &= \left\{ x \in \mathbb{R} \mid a \leq x < b \right\} \\
+    \left( a, b \right] &= \left\{ x \in \mathbb{R} \mid a < x \leq b \right\} \\
+    \left( a, b \right) &= \left\{ x \in \mathbb{R} \mid a < x < b \right\} \\
+  \end{align*}
+  $ \left[ a, b \right]$ is called the \textbf{closed interval}\index{closed
+  interval} from $a$ to $b$, $\left( a, b \right)$ is called the \textbf{open
+  interval}\index{open interval} from $a$ to $b$, and $\left[ a, b \right)$ and
+  $\left( a, b\right]$ are referred to as \textbf{half-open intervals}\index{half-open intervals}.
+\end{exmp}
+
+If there are no $x \in X$ that make $P(x)$ true then the set contains no element.
+\begin{defn}
+  The set with no elements is called the \textbf{empty set}\index{empty set};
+  it is denoted by $\emptyset$\index{$\emptyset$}.
+\end{defn}
+
+\section{Subsets}
+\label{sec:subsets}
+
+We now start studying some relations between different sets.
+\begin{defn}
+  If $A$ and $S$ are sets, we say that $S$ is a \textbf{subset}\index{subset}
+  of $A$ if every element of $S$ is also in $A$.(This can be written as "If $x
+  \in S$, then $x \in A$".) We denote this by $S \subseteq
+  A$\index{$\subseteq$}.
+\end{defn}
+
+We now show that every non-empty set has at least two subsets.
+\begin{thm}
+For all sets $X$, $\emptyset \subseteq X$ and $X \subseteq X$.
+\end{thm}
+\begin{proof}
+  We start by showing that $\emptyset \subseteq X$. By the definition of
+  subset, we must have that 
+  \begin{equation}
+    \notag
+    x \in \emptyset \impl x \in X.
+  \end{equation}
+  Since there are no values for $x$ that satisfy the hypothesis, we say that
+  this is \textit{vacously true} i.e, the hypothesis is false for all possible
+  values of $x$.
+
+  We now show that 
+  \begin{equation}
+    x \in X \impl x \in X.
+  \end{equation} 
+  The conclusion follows immediately from the hypothesis. Hence the statement
+  is true.  This means that any arbitrary non-empty set $X$ has at least two
+  subsets.
+\end{proof}
+
+\begin{exrc}
+  How many subsets does $\emptyset$ have?
+\end{exrc}
+\begin{sltn}
+  We use the definition of subsets again. We see that for a set to be a subset
+  of $\emptyset$ the set can at most have as many elements as $\emptyset$.
+  There is only one set that satisfies this property, and that is the empty set
+  itself. Hence, $\emptyset \subseteq \emptyset$. 
+\end{sltn}
+
+Notice that "If $x \in S$, then $x \in X$" is a very common statement. It is
+called an \textbf{element argument}\index{element argument}.
+
+\begin{exrc}
+  Prove that if $A \subseteq B$ and $B \subseteq C$, then $A \subseteq C$.
+\end{exrc}
+\begin{sltn}
+  We use a direct proof and assume that the hypothesis is true.  Let $x \in A$,
+  then by the hypothesis we must have $x \in B$, but since $x \in B$ we must
+  also have $x \in C$. Hence $x \in A \impl x \in C$, and therefore we have $A
+  \subseteq C$ by definition of subset.
+\end{sltn}
+
+\begin{defn}
+  If $B$ is a subset of $X$ and $B \neq X$, then we say that $B$ is a
+  \textbf{proper subset}\index{proper subset} of $X$.
+\end{defn}
+
+\begin{exrc}
+  Give two proper subsets of the set $\left\{ 1, 3, 5, 7, 9, 11 \right\}$.
+\end{exrc}
+\begin{sltn}
+  We need to find two subsets that are not equal to the set itself.
+  \begin{itemize}
+    \item $A = \left\{ 1, 5, 7, 9 \right\}$
+    \item $B = \left\{ 3, 11 \right\}$
+  \end{itemize}
+  are two proper subsets of $\left\{ 1, 3, 5, 7, 9, 11 \right\}$.
+\end{sltn}
+
+We now introduce the notion of equality between sets.
+\begin{defn}
+  Suppose that $A$ and $B$ are sets. Then $A = B$\index{set equality}\index{$ = $ (sets)} if $A \subseteq B$ and $B \subseteq A$.
+\end{defn}
+
+\section{Set Operations}
+\label{sec:set_operations}
+
+We now 
+
+
+
 \printindex
 \end{document}
