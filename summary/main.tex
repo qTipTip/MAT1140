@@ -10,13 +10,15 @@
 \usepackage{mathtools}
 \mathtoolsset{centercolon}
 
-\usepackage[]{hyperref} 
+\usepackage[hidelinks]{hyperref} 
 \usepackage[]{cleveref} 
 \usepackage[]{enumerate} 
 \usepackage[]{makeidx} 
 \usepackage[]{amsthm} 
 \usepackage[]{thmtools} 
 \usepackage[]{ulem} 
+\usepackage[]{venndiagram} 
+\usepackage[]{subcaption} 
 \renewcommand{\listtheoremname}{List of Exercises}
 \makeindex
 
@@ -32,6 +34,9 @@
 \newcommand{\impl}{\Longrightarrow}
 \newcommand{\eqvl}{\Longleftrightarrow} 
 \renewcommand{\neg}{{\sim}} % rewriting the \sim command as an unary negation
+
+\newcommand{\union}{\cup} 
+\newcommand{\intrsct}{\cap} 
 \title{
   Notes and exercises in MAT1140
 }
@@ -1606,15 +1611,151 @@ called an \textbf{element argument}\index{element argument}.
 
 We now introduce the notion of equality between sets.
 \begin{defn}
-  Suppose that $A$ and $B$ are sets. Then $A = B$\index{set equality}\index{$ = $ (sets)} if $A \subseteq B$ and $B \subseteq A$.
+  Suppose that $A$ and $B$ are sets. Then $A = B$\index{set equality}\index{$ =
+  $ (sets)} if $A \subseteq B$ and $B \subseteq A$.
 \end{defn}
 
 \section{Set Operations}
 \label{sec:set_operations}
 
-We now 
+We now need to see how we can \textit{build} new sets from old ones.
 
+\begin{defn}
+  Let $U$ be a set. Let $S \subseteq U$. Define
+  \begin{equation}
+    \notag
+    S_U^C = \left\{ x \in U \mid x \notin S \right\}.
+  \end{equation}
+  The set $S_U^C$ is called the \textbf{complement}\index{complement} of $S$ in
+  $U$. We sometimes omit the subscript $U$ if there is no ambiguity.
+\end{defn}
 
+\begin{exrc}
+Consider the intervals $U = \left[ -5, 5 \right]$ and $S = \left[ -5, 2 \right]$. Find $S_U^C$.
+\end{exrc}
+\begin{sltn}
+  We are here looking for the set $\left\{ x \in \left[ -5, 5 \right] \mid x
+  \notin \left[ -5, 2 \right] \right\}$.  This must be the set (interval)
+  \begin{equation}
+    \notag
+    S_U^C = \left( 2, 5 \right].
+  \end{equation}
+\end{sltn}
 
+\begin{exrc}
+As in the previous exercise. Let $S = \left[ -5, 2 \right]$. What is $S_\mathbb{R}^C$? 
+\end{exrc}
+\begin{sltn}
+  This must be the set
+  \begin{equation}
+    \notag
+    \left\{ x \in \mathbb{R} \mid x \notin \left[ -5, 2 \right] \right\}.
+  \end{equation}\footnote{We haven't learned unions and intersections yet.}
+\end{sltn}
+
+\begin{defn}[Unions and intersections]
+  Let $A$ and $B$ be sets.
+  \begin{enumerate}
+    \item $A \union B = \left\{x \mid  x \in A \lor x \in B \right\}$ is called the \textbf{union}\index{union}\index{$\union$} of the sets $A$ and $B$.
+    \item $A \intrsct B = \left\{ x \mid x \in A \land x \in B \right\}$ is called the \textbf{intersection}\index{intersection}\index{$\intrsct$} of the sets $A$ and $B$.
+  \end{enumerate}
+\end{defn}
+
+\begin{exrc}
+  Consider the following pairs of sets:
+  \begin{equation}
+    \notag
+    A = \left\{ a, b, c, d, e, f, g \right\} \text{ and } B = \left\{ a, e, i, o, u \right\}.
+  \end{equation}
+  Find $A \intrsct B$ and $A \union B$.
+\end{exrc}
+
+\begin{sltn}
+  We have
+  \begin{equation}
+    \notag
+    A \intrsct B = \left\{ a, e \right\}, 
+  \end{equation}
+  \begin{equation}
+    \notag
+    A \union B = \left\{ a, b, c, d, e, f, g, e, i, o, u \right\}.
+  \end{equation}
+\end{sltn}
+
+\begin{defn}
+  If $A$ and $B$ are sets that do not intersect (that is, if $A \intrsct B =
+  \emptyset$), we say that $A$ and $B$ are \textbf{disjoint}\index{disjoint}.
+\end{defn}
+
+\begin{exrc}
+  Give an example of a pair of disjoint subsets of $ \mathbb{R} $.
+\end{exrc}
+\begin{sltn}
+  We want the intersection between these two sets to be empty.  If we let $A =
+  \overline{ \mathbb{Q} }$ and $B = \mathbb{Q}$ be the irrational numbers and
+  the rational numbers, respectively, then their intersection is empty.  That
+  is
+  \begin{equation}
+    \notag
+    A \intrsct B = \emptyset.
+  \end{equation}
+\end{sltn}
+
+\begin{exrc}
+  Let $A, B$ and $X$ be sets. Prove that $X \subseteq A \intrsct B$ if and only if $X
+  \subseteq A$ and $X \subseteq B$. 
+\end{exrc}
+\begin{sltn}
+  We know that an $P \eqvl Q$ is the same as $P \impl Q \land Q \impl P$. Thus
+  we only have to show two implications.
+  \begin{enumerate}[i)]
+    \item Right implication. Let $x \in X$. By assumption we must have $x \in A
+      \land x \in B$. But this is just saying that $x \in A$ and $x \in B$.
+      Hence, $x \in X \impl X \in A \land x \in B$, and therefore we have $X
+      \subseteq A$ and $X \subseteq B$.
+    \item Left implication. Let $x \in X$. By assumption we must have $x \in A$
+      and $x \in B$.  But then, we must also have $x \in A \intrsct B$, and
+      therefore we have $X \subseteq A\intrsct B$.
+  \end{enumerate}
+\end{sltn}
+
+\pagebreak
+We can visualize set relationships by using \textbf{Venn diagrams}\index{Venn diagram}.
+\begin{figure}[h!]
+  \centering
+  \begin{venndiagram2sets}[labelNotAB={U}]
+    \fillACapB
+  \end{venndiagram2sets}
+  \begin{venndiagram2sets}[labelNotAB={U}]
+    \fillA
+    \fillB
+  \end{venndiagram2sets}
+  \caption{$A\intrsct B$ and $A \union B$}
+\end{figure}
+
+\begin{exrc}
+  Suppose you have three sets $A, B$ and $C$.
+  \begin{enumerate}
+    \item Use your intuition to devise definitions for $A \union B \union C$ and $A \intrsct B \intrsct C$.
+    \item Draw Venn diagrams to illustrate.
+  \end{enumerate}
+\end{exrc}
+\begin{sltn}
+  Intuitively, $A \union B \union C$ should be the set $\left\{ x \mid x \in A \lor x \in B \lor x \in C \right\}$ and
+  $A \intrsct B \intrsct C$ should be the set $\left\{ x \mid x \in A \land x \in B \land x \in C \right\}$.\footnote{I have not payed attention to the commutativity of these here, just remember they must be proved commutative}
+  Using Venn diagrams this can be illustrated as
+  \begin{figure}[h!]
+    \centering
+    \begin{venndiagram3sets}[labelNotABC={U}]
+      \fillA
+      \fillB
+      \fillC
+    \end{venndiagram3sets}
+    \begin{venndiagram3sets}[labelNotABC={U}]
+      \fillACapBCapC 
+    \end{venndiagram3sets}
+    \caption{$A \union B \union C$ and $A \intrsct B \intrsct C$}
+  \end{figure}
+\end{sltn}
 \printindex
 \end{document}
