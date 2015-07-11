@@ -1,3 +1,4 @@
+%{{{ preamble
 \documentclass[a4paper, 11pt]{report}
 
 \usepackage{palatino}
@@ -43,11 +44,11 @@
 \author{
   Ivar Stangeby
 }
-
+%}}}
 \begin{document}
 
 \maketitle
-
+%{{{ abstract
 \abstract
 This document is a series of notes and commentaries related to the course
 MAT1140 - Structures and Arguments lectured at the University of Oslo (UiO).
@@ -57,6 +58,7 @@ highly personal, but if someone can get any use from it, then by all means - go
 ahead! The document is following the curriculum outlined by the book
 \textit{Chapter Zero - Fundamental Notions of Abstract Mathematics (2. Ed)}  by Carol
 Schumacher.
+%}}}
 \tableofcontents
 
 \chapter{Logic}
@@ -1720,18 +1722,21 @@ As in the previous exercise. Let $S = \left[ -5, 2 \right]$. What is $S_\mathbb{
 \end{sltn}
 
 \pagebreak
-We can visualize set relationships by using \textbf{Venn diagrams}\index{Venn diagram}.
-\begin{figure}[h!]
-  \centering
-  \begin{venndiagram2sets}[labelNotAB={U}]
-    \fillACapB
-  \end{venndiagram2sets}
-  \begin{venndiagram2sets}[labelNotAB={U}]
-    \fillA
-    \fillB
-  \end{venndiagram2sets}
-  \caption{$A\intrsct B$ and $A \union B$}
-\end{figure}
+\begin{exmp}
+  We can visualize set relationships by using \textbf{Venn diagrams}\index{Venn
+  diagram}.
+  \begin{figure}[h!]
+    \centering
+    \begin{venndiagram2sets}[labelNotAB={U}]
+      \fillACapB
+    \end{venndiagram2sets}
+    \begin{venndiagram2sets}[labelNotAB={U}]
+      \fillA
+      \fillB
+    \end{venndiagram2sets}
+    \caption{$A\intrsct B$ and $A \union B$}
+  \end{figure}
+\end{exmp}
 
 \begin{exrc}
   Suppose you have three sets $A, B$ and $C$.
@@ -1741,9 +1746,12 @@ We can visualize set relationships by using \textbf{Venn diagrams}\index{Venn di
   \end{enumerate}
 \end{exrc}
 \begin{sltn}
-  Intuitively, $A \union B \union C$ should be the set $\left\{ x \mid x \in A \lor x \in B \lor x \in C \right\}$ and
-  $A \intrsct B \intrsct C$ should be the set $\left\{ x \mid x \in A \land x \in B \land x \in C \right\}$.\footnote{I have not payed attention to the commutativity of these here, just remember they must be proved commutative}
-  Using Venn diagrams this can be illustrated as
+  Intuitively, $A \union B \union C$ should be the set $\left\{ x \mid x \in A
+  \lor x \in B \lor x \in C \right\}$ and $A \intrsct B \intrsct C$ should be
+  the set $\left\{ x \mid x \in A \land x \in B \land x \in C
+  \right\}$.\footnote{I have not payed attention to the associativity of these
+  here, just remember they must be proved to be associative.} Using Venn
+  diagrams this can be illustrated as
   \begin{figure}[h!]
     \centering
     \begin{venndiagram3sets}[labelNotABC={U}]
@@ -1756,6 +1764,108 @@ We can visualize set relationships by using \textbf{Venn diagrams}\index{Venn di
     \end{venndiagram3sets}
     \caption{$A \union B \union C$ and $A \intrsct B \intrsct C$}
   \end{figure}
+\end{sltn}
+
+\begin{exmp}
+  We can look at a set of intervals by indexing the set for easy reference.
+  Suppose we want to look at the sets $\left[ 0, 1/n \right]$ for various
+  values of $n$.  We can index these sets like
+  \begin{equation}
+    \notag
+    I_1 = \left[ 0, 1 \right], I_2 = \left[ 0, 1/2 \right], I_3 = \left[ 0, 1/3 \right] \ldots
+  \end{equation}
+
+  In this case the sets are \textbf{indexed}\index{indexed} by the natural
+  numbers, $\mathbb{N}$.
+\end{exmp}
+
+\begin{exmp}
+  If $\Lambda$ is some arbitrary set, and we have a collection of sets that is indexed
+  by $\Lambda$ we can compactly write this collection of sets this way:
+  \begin{equation}
+    \notag
+    \left\{ U_\alpha \right\}_{\alpha \in \Lambda}, 
+  \end{equation}
+  which we read as "the set of $U$-alpha's over alpha in lambda".
+\end{exmp}
+
+\begin{defn}[Unions and intersections, revisited]
+  Suppose we have a collection of sets $\left\{ B_\alpha \right\}_{\alpha \in
+  \Lambda}$.
+  \begin{enumerate}
+    \item The union of all the sets is denoted by $\bigcup\limits_{\alpha \in \Lambda}
+      B_\alpha$, which we read as "the union over alpha in lambda over the
+      $B$-alpha's." An element $x$ is in $\bigcup\limits_{\alpha \in \Lambda}
+      B_\alpha$ if $x \in B_\alpha$ for some $\alpha \in \Lambda$. That is,
+      \begin{equation}
+        \notag
+        \bigcup_{\alpha \in \Lambda} B_\alpha = \left\{ x \mid x \in B_\alpha \text{ for some } \alpha \in \Lambda \right\}.
+      \end{equation} 
+
+    \item The intersection of all the sets is denoted by $\bigcap\limits_{\alpha \in \Lambda}
+      B_\alpha$, which we read as "the intersection over alpha in lambda over the
+      $B$-alpha's." An element $x$ is in $\bigcap\limits_{\alpha \in \Lambda}
+      B_\alpha$ if $x \in B_\alpha$ for all $\alpha \in \Lambda$. That is,
+      \begin{equation}
+        \notag
+        \bigcap_{\alpha \in \Lambda} B_\alpha = \left\{ x \mid x \in B_\alpha \text{ for all } \alpha \in \Lambda \right\}.
+      \end{equation} 
+    
+  \end{enumerate}
+\end{defn}
+
+\begin{exrc}
+  Let $\Lambda = \left\{ 1, 2, 3 \right\}$. Do the definitions of union and
+  intersection given in the previous definition correspond to the ones in the
+  previous exercise?
+\end{exrc}
+\begin{sltn}
+  Yes they do, for an element $x$ to be in $\bigcap\limits_{\alpha \in \Lambda}
+  B_\alpha$ it needs to be in \textit{all} the sets. And for
+  $\bigcup\limits_{\alpha \in \Lambda} B_\alpha$ it needs to be in \textit{at
+  least one} of the sets.
+\end{sltn}
+
+\begin{exrc}\ \\
+  \begin{enumerate}
+    \item Let $\left\{ I_n \right\}_{n\in \mathbb{N}}$ be the collections of
+      intervals in Example 2.3.11.
+      \begin{enumerate}[a)]
+        \item Find $\bigcup_{n\in \mathbb{N}} I_n$.
+        \item Find $\bigcap_{n\in \mathbb{N}} I_n$.
+      \end{enumerate}
+      How would the answer be different if the intervals were open instead of
+      closed?
+    \item Now let $\left\{ C_t \right\}_{t \in \mathbb{R}}$ be the collections
+      of circles as in Example 2.3.11.
+      \begin{enumerate}[a)]
+        \item Find $\bigcup_{t\in \mathbb{R}} C_t$.
+        \item Find $\bigcap_{t\in \mathbb{R}} C_t$.
+      \end{enumerate}
+  \end{enumerate} 
+\end{exrc}
+\begin{sltn}\ \\
+  \begin{enumerate}
+    \item We first look at the sets on the form $I_n = \left[ 0, 1/n \right]$.
+      \begin{enumerate}[a)]
+        \item $\bigcup_{n\in \mathbb{N}} I_n = \left[ 0, 1 \right]$
+        \item $\bigcap_{n\in \mathbb{N}} I_n = \left\{ 0 \right\}$.
+      \end{enumerate}
+      If we instead look at the open intervals, we would get the sets
+      \begin{enumerate}[a)]
+        \item $\bigcup_{n\in \mathbb{N}} I_n = \left(0, 1 \right)$
+        \item $\bigcap_{n\in \mathbb{N}} I_n = \emptyset$.
+      \end{enumerate}
+
+    \item We now look at sets on the form
+      \begin{equation}
+        \notag
+        C_t = \left\{ (x, y) \in \mathbb{R}^2 \mid (x - t)^2 + y^2 = 1\right\}.
+      \end{equation}
+      \begin{enumerate}[a)]
+        \item 
+      \end{enumerate}  
+  \end{enumerate}
 \end{sltn}
 \printindex
 \end{document}
